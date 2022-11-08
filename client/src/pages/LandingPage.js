@@ -22,7 +22,7 @@ function LandingPage() {
     { configuration: 3, roundness: 3 },
   ];
 
-  let prev = 0;
+  // let prev = 0;
 
   // setInterval(() => {
   //   const index = uniqueRand(0, combinations.length - 1, prev),
