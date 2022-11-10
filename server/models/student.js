@@ -2,8 +2,13 @@ import sequelize from "../dbConfig.js";
 import { DataTypes } from "sequelize";
 
 const Student = sequelize.define(
-  "Student",
+  "Student", // referring to the table name in the db
   {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+    },
     // Model attributes are defined here
     firstName: {
       type: DataTypes.STRING,
@@ -11,6 +16,10 @@ const Student = sequelize.define(
     },
     lastName: {
       type: DataTypes.STRING,
+      // allowNull defaults to true
+    },
+    age: {
+      type: DataTypes.INTEGER,
       // allowNull defaults to true
     },
   },
