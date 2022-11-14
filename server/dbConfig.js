@@ -1,11 +1,14 @@
 import pg from "pg";
+import * as dotenv from "dotenv";
 // // import Sequelize from "sequelize";
+
+dotenv.config();
 
 // this is connecting postgress database with our backend
 const { Pool } = pg;
 
 // const pool = new Pool({
-//   user: "xxxx",
+//   user: "xxx",
 //   password: "xxx",
 //   host: "xxx",
 //   database: "xxx",
@@ -13,11 +16,11 @@ const { Pool } = pg;
 // });
 
 const pool = new Pool({
-  user: process.env.user,
-  password: process.env.password,
-  host: process.env.host,
-  database: process.env.database,
-  port: process.env.port,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  host: process.env.DB_HOST,
+  database: process.env.DB_DATABASE,
+  port: process.env.DB_PORT,
 });
 
 // // const sequelize = new Sequelize("test", "postgres", "postgres", {
