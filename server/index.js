@@ -72,6 +72,19 @@ app.put("/quotes/:id", async (req, res) => {
 
 //delete a quote
 
+app.delete("/quotes/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deleteQuote = await pool.query(
+      "DELETE FROM quotes WHERE quote_id = $1",
+      [id]
+    );
+    res.json("Quote was deleted");
+  } catch (error) {
+    console.error(error.message);
+  }
+});
+
 //--------------------//
 //GET route to query users table using Sequelize
 // app.get("/test", async (req, res) => {

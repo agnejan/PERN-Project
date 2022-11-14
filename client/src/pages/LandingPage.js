@@ -1,5 +1,6 @@
 import React from "react";
 import "../styling/landingPage.css";
+import { Link } from "react-router-dom";
 
 function LandingPage() {
   const wrapper = document.getElementById("wrapper");
@@ -45,7 +46,9 @@ function LandingPage() {
         <div className="shape"></div>
         <div className="shape"></div>
       </div>
-      <a>INSPIRE ME</a>
+      <Link to="/quotes" style={{ textDecoration: "none", color: "black" }}>
+        INSPIRE ME
+      </Link>
     </div>
   );
 }

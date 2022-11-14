@@ -7,4 +7,4 @@ CREATE TABLE quotes(
     author VARCHAR(255),
     publication VARCHAR(255),
     genre VARCHAR(255)
-);
+); 

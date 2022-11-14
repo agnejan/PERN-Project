@@ -4,12 +4,20 @@ import pg from "pg";
 // this is connecting postgress database with our backend
 const { Pool } = pg;
 
+// const pool = new Pool({
+//   user: "xxxx",
+//   password: "xxx",
+//   host: "xxx",
+//   database: "xxx",
+//   port: "xxx",
+// });
+
 const pool = new Pool({
-  user: "postgres",
-  password: "postgres",
-  host: "localhost",
-  database: "quoteapp",
-  port: "5432",
+  user: process.env.user,
+  password: process.env.password,
+  host: process.env.host,
+  database: process.env.database,
+  port: process.env.port,
 });
 
 // // const sequelize = new Sequelize("test", "postgres", "postgres", {
