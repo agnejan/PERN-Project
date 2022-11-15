@@ -33,7 +33,6 @@ function App() {
               <Route path="/home" element={<LandingPage />}></Route>
               <Route path="/quotes" element={<QuotesList />}></Route>
             </Routes>
-
             <NavBar />
           </div>
         </ThemeProvider>
