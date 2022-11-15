@@ -1,14 +1,15 @@
 import "./App.css";
 import LandingPage from "./pages/LandingPage";
-import QuoteList from "./pages/QuoteList";
+import QuotesList from "./pages/QuotesList";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { QuotesContextProvider } from "./context/QuotesContext";
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#9f956c",
+      main: "#cbbf7a",
     },
     secondary: {
       main: "#f4e87c",
@@ -24,17 +25,20 @@ const theme = createTheme({
 
 function App() {
   return (
-    <BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <div className="App">
-          <NavBar />
-          <Routes>
-            <Route path="/home" element={<LandingPage />}></Route>
-            <Route path="/quotes" element={<QuoteList />}></Route>
-          </Routes>
-        </div>
-      </ThemeProvider>
-    </BrowserRouter>
+    <QuotesContextProvider>
+      <BrowserRouter>
+        <ThemeProvider theme={theme}>
+          <div className="App" sx={{ mb: 5 }}>
+            <Routes>
+              <Route path="/home" element={<LandingPage />}></Route>
+              <Route path="/quotes" element={<QuotesList />}></Route>
+            </Routes>
+
+            <NavBar />
+          </div>
+        </ThemeProvider>
+      </BrowserRouter>
+    </QuotesContextProvider>
   );
 }
 

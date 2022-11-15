@@ -1,13 +1,15 @@
 import express from "express";
 import userRoutes from "./routes/userRoutes.js";
+import cors from "cors";
 // import sequelize from "./dbConfig.js";
 // import "dotenv/config";
-import pool from "./dbConfig.js"; // const pool = require("./db");
+import pool from "./dbConfig.js"; //  this is ES6 syntax instead of const pool = require("./db");
 
 //create express app
 const app = express();
 
 //middleware
+app.use(cors()); // this means any front end is allowed to communitate with backend, dpmt
 app.use(express.json()); //req.body
 app.use(express.urlencoded({ extended: true }));
 
