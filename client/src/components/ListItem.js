@@ -19,21 +19,40 @@ const bull = (
 export default function BasicCard(props) {
   const quote = props.quote;
   return (
-    <Card sx={{ minWidth: 275, maxWidth: 356 }}>
-      <CardContent>
+    <Card
+      raised={true}
+      sx={{ minWidth: 275, maxWidth: 356 }}
+      style={{
+        backgroundColor: "#faf8ed",
+      }}
+    >
+      <CardContent
+        style={{
+          paddingTop: 15,
+          paddingBottom: 0,
+        }}
+      >
         <Typography
           sx={{ fontSize: 14 }}
           color="text.secondary"
           gutterBottom
-          style={{ fontStyle: "italic" }}
+          style={{
+            fontStyle: "italic",
+            fontFamily: "'Merriweather', serif",
+          }}
         >
           {quote.author}
         </Typography>
-        <Typography variant="body2">{quote.quote}</Typography>
+        <Typography
+          variant="body2"
+          style={{ fontFamily: "'Merriweather', serif" }}
+        >
+          {quote.quote}
+        </Typography>
         <Typography
           sx={{ mt: 1.5, fontSize: 14 }}
           color="text.secondary"
-          style={{ fontStyle: "italic" }}
+          style={{ fontStyle: "italic", fontFamily: "'Merriweather', serif" }}
         >
           {quote.publication}
         </Typography>

@@ -8,7 +8,6 @@ import { QuotesContext } from "../context/QuotesContext";
 
 function QuotesList() {
   const { quotes } = useContext(QuotesContext); // here destructuring instead of writing const products = useContext(ProductsContext.products)
-  // console.log(quotes);
 
   // const [quotes, setQuotes] = useState([]);
 

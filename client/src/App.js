@@ -1,6 +1,7 @@
 import "./App.css";
 import LandingPage from "./pages/LandingPage";
 import QuotesList from "./pages/QuotesList";
+import AddNewQuote from "./pages/AddNewQuote";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -28,10 +29,11 @@ function App() {
     <QuotesContextProvider>
       <BrowserRouter>
         <ThemeProvider theme={theme}>
-          <div className="App" sx={{ mb: 5 }}>
+          <div className="App">
             <Routes>
               <Route path="/home" element={<LandingPage />}></Route>
               <Route path="/quotes" element={<QuotesList />}></Route>
+              <Route path="/newquote" element={<AddNewQuote />}></Route>
             </Routes>
             <NavBar />
           </div>
