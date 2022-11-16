@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Input from "@mui/material/Input";
+import { FormGroup, FormControl } from "@mui/material";
 
 const ariaLabel = { "aria-label": "description" };
 
@@ -28,6 +29,7 @@ function AddNewQuote() {
         body: JSON.stringify(body),
       });
       console.log(body);
+      console.log(response);
     } catch (error) {
       console.error(error.message);
     }
@@ -43,15 +45,16 @@ function AddNewQuote() {
       }}
     >
       <h2>Add New Quote:</h2>
-      <form noValidate autoComplete="off">
-        {/* <Box
-        component="form"
+
+      {/* <Box
+        // component="form"
         sx={{
           "& > :not(style)": { m: 1, width: "40ch", rowGap: "1" },
         }}
         noValidate
         autoComplete="off"
       > */}
+      <FormGroup>
         {/* <TextField
           id="quote"
           label="Quote..."
@@ -111,11 +114,11 @@ function AddNewQuote() {
           fullWidth
         />
 
-        <Button variant="contained" color="primary" onSubmit={handleSubmit}>
+        <Button variant="contained" color="secondary" onClick={handleSubmit}>
           ADD
         </Button>
-        {/* </Box> */}
-      </form>
+      </FormGroup>
+      {/* </Box> */}
     </div>
   );
 }
