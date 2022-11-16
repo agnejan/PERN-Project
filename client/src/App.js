@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { QuotesContextProvider } from "./context/QuotesContext";
+import Register from "./pages/Register";
 
 const theme = createTheme({
   palette: {
@@ -34,6 +35,7 @@ function App() {
               <Route path="/home" element={<LandingPage />}></Route>
               <Route path="/quotes" element={<QuotesList />}></Route>
               <Route path="/newquote" element={<AddNewQuote />}></Route>
+              <Route path="/register" element={<Register />}></Route>
             </Routes>
             <NavBar />
           </div>

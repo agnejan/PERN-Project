@@ -21,7 +21,7 @@ export default function BasicCard(props) {
   return (
     <Card
       raised={true}
-      sx={{ minWidth: 275, maxWidth: 356 }}
+      sx={{ minWidth: 340, maxWidth: 340 }}
       style={{
         backgroundColor: "#faf8ed",
       }}

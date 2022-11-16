@@ -8,3 +8,10 @@ CREATE TABLE quotes(
     publication VARCHAR(255),
     genre VARCHAR(255)
 ); 
+
+CREATE TABLE users(
+    user_id SERIAL PRIMARY KEY,
+    name text NOT NULL,
+    email text NOT NULL UNIQUE,
+    password varchar(255) NOT NULL
+);

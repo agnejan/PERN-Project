@@ -18,13 +18,14 @@ function AddNewQuote() {
   //   console.log(quote);
 
   const handleSubmit = async (e) => {
+    // debugger; - can put this in to stop the app running and go step by step
     e.preventDefault();
     try {
       const body = { quote, author, publication, picture, genre };
       const response = await fetch("http://localhost:5000/newquote", {
         method: "POST",
         headers: {
-          "Content-Type": "application / json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(body),
       });
@@ -45,80 +46,72 @@ function AddNewQuote() {
       }}
     >
       <h2>Add New Quote:</h2>
-
-      {/* <Box
+      <Box
         // component="form"
         sx={{
-          "& > :not(style)": { m: 1, width: "40ch", rowGap: "1" },
+          "& > :not(style)": { m: 3, width: "40ch", rowGap: "1" },
         }}
         noValidate
         autoComplete="off"
-      > */}
-      <FormGroup>
-        {/* <TextField
-          id="quote"
-          label="Quote..."
-          multiline
-          rows={5}
-          variant="outlined"
-          color="action"
-          value={quote}
-          onChange={(e) => setQuote(e.target.value)}
-          required
-          fullWidth
-        /> */}
+      >
+        <form onSubmit={handleSubmit}>
+          <Input
+            placeholder="Quote..."
+            inputProps={ariaLabel}
+            fullWidth
+            multiline
+            rows={5}
+            onChange={(e) => setQuote(e.target.value)}
+            required
+          />
 
-        <Input
-          placeholder="Quote..."
-          inputProps={ariaLabel}
-          fullWidth
-          multiline
-          rows={5}
-          onChange={(e) => setQuote(e.target.value)}
-        />
+          <Input
+            id="author"
+            placeholder="Author"
+            variant="outlined"
+            value={author}
+            onChange={(e) => setAuthor(e.target.value)}
+            required
+            fullWidth
+          />
+          <Input
+            id="publication"
+            placeholder="Publication"
+            variant="outlined"
+            value={publication}
+            onChange={(e) => setPublication(e.target.value)}
+            required
+            fullWidth
+          />
+          <Input
+            id="genre"
+            placeholder="Genre"
+            variant="outlined"
+            value={genre}
+            onChange={(e) => setGenre(e.target.value)}
+            required
+            fullWidth
+          />
+          <Input
+            id="picture"
+            placeholder="Link to picture"
+            variant="outlined"
+            value={picture}
+            onChange={(e) => setPicture(e.target.value)}
+            required
+            fullWidth
+          />
 
-        <Input
-          id="author"
-          placeholder="Author"
-          variant="outlined"
-          value={author}
-          onChange={(e) => setAuthor(e.target.value)}
-          required
-          fullWidth
-        />
-        <Input
-          id="publication"
-          placeholder="Publication"
-          variant="outlined"
-          value={publication}
-          onChange={(e) => setPublication(e.target.value)}
-          required
-          fullWidth
-        />
-        <Input
-          id="genre"
-          placeholder="Genre"
-          variant="outlined"
-          value={genre}
-          onChange={(e) => setGenre(e.target.value)}
-          required
-          fullWidth
-        />
-        <Input
-          id="picture"
-          placeholder="Link to picture"
-          variant="outlined"
-          value={picture}
-          onChange={(e) => setPicture(e.target.value)}
-          required
-          fullWidth
-        />
-
-        <Button variant="contained" color="secondary" onClick={handleSubmit}>
-          ADD
-        </Button>
-      </FormGroup>
-      {/* </Box> */}
+          <Button
+            type="submit"
+            variant="contained"
+            color="secondary"
+            style={{ marginTop: 20 }}
+          >
+            ADD
+          </Button>
+        </form>
+      </Box>
     </div>
   );
 }
