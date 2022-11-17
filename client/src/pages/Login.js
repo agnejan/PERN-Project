@@ -10,10 +10,9 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
-import { useState, useContext } from "react";
-
-function Register() {
+function Login() {
   const handleClickShowPassword = () => {
     setShowPassowrd(!showPassword);
   };
@@ -23,16 +22,15 @@ function Register() {
   };
 
   //REGISTRATION
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassowrd] = useState("");
 
-  const handleRegistration = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const body = { name, email, password };
-      const response = await fetch("http://localhost:5000/register", {
+      const body = { email, password };
+      const response = await fetch("http://localhost:5000/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -54,10 +52,9 @@ function Register() {
         justifyContent: "center",
       }}
     >
-      <h2>Register</h2>
-      <form onSubmit={handleRegistration}>
+      <h2>Login</h2>
+      <form onSubmit={handleLogin}>
         <Box
-          //   component="form"
           sx={{
             "& > :not(style)": { m: 1, width: "25ch", rowGap: "1" },
           }}
@@ -65,21 +62,10 @@ function Register() {
           autoComplete="off"
         >
           <TextField
-            id="name"
-            label="Your username"
-            variant="outlined"
-            color="action"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-
-          <TextField
             id="email"
             label="Your email"
             variant="outlined"
             color="action"
-            type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -119,12 +105,12 @@ function Register() {
         </Box>
       </form>
       <div>
-        Have an account already?{" "}
+        Don't have an account yet?{" "}
         <Link
-          to={"/login"}
+          to={"/register"}
           style={{ textDecoration: "none", fontWeight: "bold" }}
         >
-          Log In
+          Register
         </Link>{" "}
         here.{" "}
       </div>
@@ -132,4 +118,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default Login;
