@@ -20,7 +20,7 @@ export const QuotesContextProvider = (props) => {
       const data = await response.json();
       setQuotes(data);
     } catch (err) {
-      console.errror(err.message);
+      console.error(err.message);
     }
   };
 

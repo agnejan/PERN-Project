@@ -2,7 +2,8 @@ import pg from "pg";
 import * as dotenv from "dotenv";
 // // import Sequelize from "sequelize";
 
-dotenv.config();
+dotenv.config({ path: ".env.local" });
+console.log(process.env.DB_USER);
 
 // this is connecting postgress database with our backend
 const { Pool } = pg;
