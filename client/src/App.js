@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { QuotesContextProvider } from "./context/QuotesContext";
+import { UserContextProvider } from "./context/AuthContext";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 
@@ -28,22 +29,24 @@ const theme = createTheme({
 
 function App() {
   return (
-    <QuotesContextProvider>
-      <BrowserRouter>
-        <ThemeProvider theme={theme}>
-          <div className="App">
-            <Routes>
-              <Route path="/home" element={<LandingPage />}></Route>
-              <Route path="/quotes" element={<QuotesList />}></Route>
-              <Route path="/newquote" element={<AddNewQuote />}></Route>
-              <Route path="/register" element={<Register />}></Route>
-              <Route path="/login" element={<Login />}></Route>
-            </Routes>
-            <NavBar />
-          </div>
-        </ThemeProvider>
-      </BrowserRouter>
-    </QuotesContextProvider>
+    <UserContextProvider>
+      <QuotesContextProvider>
+        <BrowserRouter>
+          <ThemeProvider theme={theme}>
+            <div className="App">
+              <Routes>
+                <Route path="/home" element={<LandingPage />}></Route>
+                <Route path="/quotes" element={<QuotesList />}></Route>
+                <Route path="/newquote" element={<AddNewQuote />}></Route>
+                <Route path="/register" element={<Register />}></Route>
+                <Route path="/login" element={<Login />}></Route>
+              </Routes>
+              <NavBar />
+            </div>
+          </ThemeProvider>
+        </BrowserRouter>
+      </QuotesContextProvider>
+    </UserContextProvider>
   );
 }
 

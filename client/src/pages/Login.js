@@ -21,7 +21,7 @@ function Login() {
     event.preventDefault();
   };
 
-  //REGISTRATION
+  //Login
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassowrd] = useState("");

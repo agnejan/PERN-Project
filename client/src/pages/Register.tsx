@@ -10,41 +10,70 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
-
 import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { StringDecoder } from "string_decoder";
+import { AuthContext } from "../context/AuthContext";
+
+interface State {
+  password: string;
+  email: string;
+  name: string;
+  error: string;
+  showPassword: boolean;
+}
 
 function Register() {
-  const handleClickShowPassword = () => {
-    setShowPassowrd(!showPassword);
-  };
+  const [values, setValues] = useState<State>({
+    password: "",
+    email: "",
+    name: "",
+    error: "",
+    showPassword: boolean,
+  });
+  // const [showPassword, setShowPassowrd] = useState<State>("");
+  //  const [name, setName] = useState("");
+  //  const [email, setEmail] = useState("");
+  //  const [password, setPassword] = useState("");
 
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
+  const navigate = useNavigate();
+
+  const { register } = useContext(AuthContext);
+
+  const handleChange =
+    (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
+      setValues({ ...values, [prop]: event.target.value });
+    };
+
+  // const handleClickShowPassword = () => {
+  //   setShowPassword(!showPassword);
+  // };
+
+  // const handleMouseDownPassword = (event) => {
+  //   event.preventDefault();
+  // };
 
   //REGISTRATION
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassowrd] = useState("");
 
-  const handleRegistration = async (e) => {
-    e.preventDefault();
-    try {
-      const body = { name, email, password };
-      const response = await fetch("http://localhost:5000/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(body),
-      });
-      console.log(body);
-      console.log(response);
-    } catch (error) {
-      console.error(error.message);
-    }
-  };
+  // const handleRegistration = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const body = { name, email, password };
+  //     const response = await fetch("http://localhost:5000/register", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(body),
+  //     });
+  //     console.log(body);
+  //     console.log(response);
+  //   } catch (error) {
+  //     console.error(error.message);
+  //   }
+  // };
+
+  const handleRegistration = () => {};
 
   return (
     <div
@@ -68,9 +97,9 @@ function Register() {
             id="name"
             label="Your username"
             variant="outlined"
-            color="action"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            color="secondary"
+            value={values.name}
+            onChange={handleChange("name")}
             required
           />
 
@@ -78,16 +107,16 @@ function Register() {
             id="email"
             label="Your email"
             variant="outlined"
-            color="action"
+            color="secondary"
             type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={values.email}
+            onChange={handleChange("email")}
             required
           />
           <FormControl
             sx={{ width: "25ch" }}
             variant="outlined"
-            color="action"
+            color="secondary"
             required
           >
             <InputLabel htmlFor="outlined-adornment-password">
@@ -96,8 +125,8 @@ function Register() {
             <OutlinedInput
               id="password"
               type={showPassword ? "text" : "password"}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={values.password}
+              onChange={handleChange("password")}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton

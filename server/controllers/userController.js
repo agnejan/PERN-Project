@@ -46,6 +46,7 @@ export const register = async (req, res) => {
               });
             } else {
               const token = jwt.sign(
+                // Signing a jwt token
                 {
                   email: newUser.email,
                 },
