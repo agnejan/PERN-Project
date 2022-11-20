@@ -1,5 +1,5 @@
-import React from "react";
-import Box from "@mui/material/Box";
+import React, { ChangeEvent, FormEvent } from "react";
+import { Box } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton";
 import OutlinedInput from "@mui/material/OutlinedInput";
@@ -29,8 +29,9 @@ function Register() {
     email: "",
     name: "",
     error: "",
-    showPassword: boolean,
+    showPassword: false,
   });
+
   // const [showPassword, setShowPassowrd] = useState<State>("");
   //  const [name, setName] = useState("");
   //  const [email, setEmail] = useState("");
@@ -45,13 +46,14 @@ function Register() {
       setValues({ ...values, [prop]: event.target.value });
     };
 
-  // const handleClickShowPassword = () => {
-  //   setShowPassword(!showPassword);
-  // };
+  const handleClickShowPassword = () => {
+    // setValues.showPassword(!values.showPassword);
+    setValues({ ...values, showPassword: !values.showPassword });
+  };
 
-  // const handleMouseDownPassword = (event) => {
-  //   event.preventDefault();
-  // };
+  const handleMouseDownPassword = (event: { preventDefault: () => void }) => {
+    event.preventDefault();
+  };
 
   //REGISTRATION
 
@@ -73,7 +75,24 @@ function Register() {
   //   }
   // };
 
-  const handleRegistration = () => {};
+  const handleSubmit = async (event: FormEvent) => {
+    event.preventDefault();
+
+    try {
+      const { success, error } = await register(
+        values.email,
+        values.password,
+        values.name
+      );
+      if (success) {
+        navigate("/profile");
+      } else {
+        error && setValues({ ...values, error: error });
+      }
+    } catch (error) {
+      setValues({ ...values, error: "error.message" });
+    }
+  };
 
   return (
     <div
@@ -84,14 +103,13 @@ function Register() {
       }}
     >
       <h2>Register</h2>
-      <form onSubmit={handleRegistration}>
+      <form onSubmit={handleSubmit}>
         <Box
-          //   component="form"
-          sx={{
-            "& > :not(style)": { m: 1, width: "25ch", rowGap: "1" },
-          }}
-          noValidate
-          autoComplete="off"
+        // sx={{
+        //   "& > :not(style)": { m: 1, width: "25ch", rowGap: "1" },
+        // }}
+        // noValidate
+        // autoComplete="off"
         >
           <TextField
             id="name"
@@ -124,7 +142,7 @@ function Register() {
             </InputLabel>
             <OutlinedInput
               id="password"
-              type={showPassword ? "text" : "password"}
+              type={values.showPassword ? "text" : "password"}
               value={values.password}
               onChange={handleChange("password")}
               endAdornment={
@@ -135,7 +153,7 @@ function Register() {
                     onMouseDown={handleMouseDownPassword}
                     edge="end"
                   >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                    {values.showPassword ? <VisibilityOff /> : <Visibility />}
                   </IconButton>
                 </InputAdornment>
               }

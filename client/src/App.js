@@ -6,9 +6,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { QuotesContextProvider } from "./context/QuotesContext";
-import { UserContextProvider } from "./context/AuthContext";
+import { AuthContext, AuthProvider } from "./context/AuthContext";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import ProfilePage from "./pages/ProfilePage";
 
 const theme = createTheme({
   palette: {
@@ -29,7 +30,7 @@ const theme = createTheme({
 
 function App() {
   return (
-    <UserContextProvider>
+    <AuthProvider>
       <QuotesContextProvider>
         <BrowserRouter>
           <ThemeProvider theme={theme}>
@@ -40,13 +41,14 @@ function App() {
                 <Route path="/newquote" element={<AddNewQuote />}></Route>
                 <Route path="/register" element={<Register />}></Route>
                 <Route path="/login" element={<Login />}></Route>
+                <Route path="/profile" element={<ProfilePage />}></Route>
               </Routes>
               <NavBar />
             </div>
           </ThemeProvider>
         </BrowserRouter>
       </QuotesContextProvider>
-    </UserContextProvider>
+    </AuthProvider>
   );
 }
 
