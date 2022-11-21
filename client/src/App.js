@@ -22,7 +22,7 @@ const theme = createTheme({
     info: {
       main: "#a16da8",
     },
-    action: {
+    warning: {
       main: "#d500f9",
     },
   },

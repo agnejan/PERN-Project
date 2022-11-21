@@ -145,3 +145,8 @@ export const getOneUser = async (req, res) => {
     });
   }
 };
+
+export const getProfile = async (req, res) => {
+  console.log("req.payload", req.payload);
+  res.status(201).json(`authorized request for ${req.payload.email}`);
+};

@@ -2,6 +2,7 @@ import express from "express";
 import quoteRoutes from "./routes/quoteRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import cors from "cors";
+import { passportConfig } from "./middleware/passport.js";
 // import pool from "./dbConfig.js"; //  this is ES6 syntax instead of const pool = require("./db");
 
 //create express app
@@ -19,6 +20,8 @@ app.use(express.urlencoded({ extended: true }));
 // set the cross origin security to allow all origin (TO BE CHANGED IN PRODUCTION!)
 app.use(cors()); // this means any front end is allowed to communitate with backend
 
+app.use(passport.initialize());
+passportConfig(passport);
 //ROUTES//
 
 //create a quote

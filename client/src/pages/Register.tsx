@@ -105,17 +105,17 @@ function Register() {
       <h2>Register</h2>
       <form onSubmit={handleSubmit}>
         <Box
-        // sx={{
-        //   "& > :not(style)": { m: 1, width: "25ch", rowGap: "1" },
-        // }}
-        // noValidate
-        // autoComplete="off"
+          sx={{
+            "& > :not(style)": { m: 1, width: "25ch", rowGap: "1" },
+          }}
+          // noValidate
+          // autoComplete="off"
         >
           <TextField
             id="name"
             label="Your username"
             variant="outlined"
-            color="secondary"
+            color="info"
             value={values.name}
             onChange={handleChange("name")}
             required
@@ -125,7 +125,7 @@ function Register() {
             id="email"
             label="Your email"
             variant="outlined"
-            color="secondary"
+            color="info"
             type="email"
             value={values.email}
             onChange={handleChange("email")}

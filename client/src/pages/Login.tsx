@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEvent, FormEvent, useContext } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton";
@@ -11,36 +11,51 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
+
+interface State {
+  password: string;
+  email: string;
+  error: string;
+  showPassword: boolean;
+}
 
 function Login() {
+  const [values, setValues] = useState<State>({
+    password: "",
+    email: "",
+    error: "",
+    showPassword: false,
+  });
+
+  const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const handleClickShowPassword = () => {
-    setShowPassowrd(!showPassword);
+    setValues({ ...values, showPassword: !values.showPassword });
   };
 
-  const handleMouseDownPassword = (event) => {
+  const handleMouseDownPassword = (event: { preventDefault: () => void }) => {
     event.preventDefault();
   };
 
-  //Login
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassowrd] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [showPassword, setShowPassowrd] = useState("");
 
-  const handleLogin = async (e) => {
+  const handleChange =
+    (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
+      setValues({ ...values, [prop]: event.target.value });
+    };
+
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    try {
-      const body = { email, password };
-      const response = await fetch("http://localhost:5000/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(body),
-      });
-      console.log(body);
-      console.log(response);
-    } catch (error) {
-      console.error(error.message);
+    const { success, error } = await login(values.email, values.password);
+    if (success) {
+      navigate("/profile");
+    } else {
+      error && setValues({ ...values, error: error });
     }
   };
 
@@ -53,37 +68,35 @@ function Login() {
       }}
     >
       <h2>Login</h2>
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleSubmit}>
         <Box
           sx={{
             "& > :not(style)": { m: 1, width: "25ch", rowGap: "1" },
           }}
-          noValidate
-          autoComplete="off"
+          // noValidate
+          // autoComplete="off"
         >
           <TextField
             id="email"
             label="Your email"
             variant="outlined"
-            color="action"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            color="info"
+            value={values.email}
+            onChange={handleChange("email")}
             required
           />
           <FormControl
             sx={{ width: "25ch" }}
             variant="outlined"
-            color="action"
+            color="info"
             required
           >
-            <InputLabel htmlFor="outlined-adornment-password">
-              Choose a password
-            </InputLabel>
+            <InputLabel htmlFor="password">Choose a password</InputLabel>
             <OutlinedInput
               id="password"
-              type={showPassword ? "text" : "password"}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              type={values.showPassword ? "text" : "password"}
+              value={values.password}
+              onChange={handleChange("password")}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
@@ -92,7 +105,7 @@ function Login() {
                     onMouseDown={handleMouseDownPassword}
                     edge="end"
                   >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                    {values.showPassword ? <VisibilityOff /> : <Visibility />}
                   </IconButton>
                 </InputAdornment>
               }
