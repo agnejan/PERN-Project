@@ -134,7 +134,7 @@ function Register() {
           <FormControl
             sx={{ width: "25ch" }}
             variant="outlined"
-            color="secondary"
+            color="info"
             required
           >
             <InputLabel htmlFor="outlined-adornment-password">

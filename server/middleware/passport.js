@@ -6,7 +6,7 @@ dotenv.config();
 
 const jwtOptions = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-  secrectOrKey: process.env.SECRET_KEY,
+  secretOrKey: process.env.SECRET_KEY,
 };
 
 const jwtStrategy = new JwtStrategy(jwtOptions, async function (
@@ -14,11 +14,12 @@ const jwtStrategy = new JwtStrategy(jwtOptions, async function (
   done
 ) {
   try {
-    const res = await pool.query(
-      "SELECT * FROM users WHERE email = $1;"[jwt_payload.email]
-    );
+    const res = await pool.query("SELECT * FROM users WHERE email = $1;", [
+      jwt_payload.email,
+    ]);
     const user = res.rows[0];
     console.log("user", user);
+
     if (user) {
       return done(null, user);
     } else {
@@ -29,8 +30,9 @@ const jwtStrategy = new JwtStrategy(jwtOptions, async function (
   }
 });
 
-export const passportCOnfig = () => {
+export const passportConfig = () => {
   passport.use(jwtStrategy);
 };
 
 export const jwtAuth = passport.authenticate("jwt", { session: false });
+export const oAuth = passport.authenticate("oauth", { session: false });
