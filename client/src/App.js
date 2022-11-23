@@ -10,6 +10,7 @@ import { AuthContext, AuthProvider } from "./context/AuthContext";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import ProfilePage from "./pages/ProfilePage";
+import Logout from "./pages/Logout";
 
 const theme = createTheme({
   palette: {
@@ -42,6 +43,7 @@ function App() {
                 <Route path="/register" element={<Register />}></Route>
                 <Route path="/login" element={<Login />}></Route>
                 <Route path="/profile" element={<ProfilePage />}></Route>
+                <Route path="/logout" element={<Logout />}></Route>
               </Routes>
               <NavBar />
             </div>

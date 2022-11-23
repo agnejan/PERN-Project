@@ -21,10 +21,10 @@ export type AuthContextValue = {
 const initialAuth: AuthContextValue = {
   user: null,
   register: () => {
-    throw new Error("register not implemented.");
+    throw new Error("register not implemented");
   },
   login: () => {
-    throw new Error("login not implemented.");
+    throw new Error("login not implemented");
   },
 };
 

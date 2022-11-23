@@ -16,4 +16,9 @@ CREATE TABLE users(
     password varchar(255) NOT NULL
 );
 
-ALTER TABLE quotes ADD FOREIGN KEY (user_id) REFERENCES users(id);
+ALTER TABLE quotes FOREIGN KEY (user_id) REFERENCES users(id);
+
+SELECT *
+FROM quotes
+LEFT JOIN users
+ON quotes.user_id = users.id

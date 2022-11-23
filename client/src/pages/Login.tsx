@@ -113,7 +113,7 @@ function Login() {
             />
           </FormControl>
           <Button variant="contained" color="secondary" type="submit">
-            REGISTER
+            LOG IN
           </Button>
         </Box>
       </form>
