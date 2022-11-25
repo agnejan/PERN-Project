@@ -1,9 +1,9 @@
-import { createContext, useState, ReactNode } from "react";
+import { createContext, useState, ReactNode, useEffect } from "react";
 import { NullLiteral } from "typescript";
 
 const backendUrl = "http://localhost:5000";
 
-type User = { name: string; email?: string };
+type User = { name: string; email?: string; id: number };
 
 export type AuthContextValue = {
   user: User | null;
@@ -36,6 +36,30 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   //state
   const [user, setUser] = useState<User | null>(initialAuth.user);
 
+  // use Effect to get Profile info from the token when the app is refreshed
+  useEffect(() => {
+    console.log("useEffect getProfile has run");
+    getProfile();
+  }, []);
+
+  const getProfile = async () => {
+    const jwt = localStorage.getItem("jwt"); // *** do an if if the token doesnt exist
+    if (!jwt) {
+      console.log("JWT token does not exist");
+    }
+    const options = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${jwt}`,
+      },
+    };
+    const res = await fetch(`${backendUrl}/profile`, options);
+    const user = (await res.json()) as User;
+    console.log("user", user);
+    setUser(user);
+  };
+
   const register = async (
     email: string,
     password: string,
@@ -50,9 +74,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     };
     const res = await fetch(`${backendUrl}/register`, options);
     const { success, error, jwt, name } = await res.json();
-    localStorage.setItem("jwt", jwt); // here setting the token in local storage
-    setUser({ ...user, name });
-    return { success, error };
+    if (success) {
+      localStorage.setItem("jwt", jwt); // here setting the token in local storage
+      getProfile();
+    }
+    // setUser({ ...user, name }); // this means we take the user object and overwrrite the name property - called object spread
+    return { success, error, name };
   };
 
   const login = async (email: string, password: string) => {
@@ -65,10 +92,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       body: JSON.stringify({ email, password }),
     };
     const res = await fetch(`${backendUrl}/login`, options);
-    const { success, token, error, name } = await res.json();
-    localStorage.setItem("jwt", token); // here setting the token in local storage
-    setUser({ ...user, name }); // what are we doing here? Lucas
-    console.log("user", user); // why is user not recognised?
+    const { success, token, error } = await res.json(); // *** here add aslo if (success) and if (error) handling
+    if (success) {
+      localStorage.setItem("jwt", token); // here setting the token in local storage
+      getProfile();
+    } else if (error) {
+      console.log("log in error", error);
+    }
+    // setUser({ ...user, name }); // what are we doing here? Lucas
+    // console.log("user", user); // why is user not recognised? Lucas
     return { success, error };
   };
 

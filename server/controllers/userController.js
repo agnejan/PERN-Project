@@ -117,6 +117,9 @@ export const login = async (req, res) => {
   }
 };
 
+// LOGOUT
+export const logout = async () => {};
+
 //GET ALL USERS
 export const getAllUsers = async (req, res) => {
   console.log("req.params, req.query", req.params, req.query);
@@ -154,11 +157,11 @@ export const getOneUser = async (req, res) => {
 export const getProfile = async (req, res) => {
   console.log("req.params, req.query", req.params, req.query);
   try {
-    const user = await pool.query(
-      "SELECT name, email FROM users WHERE id = $1",
-      [req.user.id]
-    );
-    res.json(user.rows[0]);
+    // const user = await pool.query(
+    //   "SELECT name, email FROM users WHERE id = $1",
+    //   [req.user.id]
+    // );
+    res.json(req.user);
     console.log("req.user", req.user);
   } catch (error) {
     console.log("err.message", error.message);

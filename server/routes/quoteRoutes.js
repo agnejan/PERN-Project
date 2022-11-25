@@ -1,5 +1,6 @@
 // import pool from "../dbConfig.js";
 import express from "express";
+import { jwtAuth } from "../middleware/passport.js";
 // import { Router } from "express";
 import {
   getAllQuotes,
@@ -16,7 +17,7 @@ const router = express.Router(); // router is express feature to create API endp
 router.get("/quotes", getAllQuotes);
 router.get("/quotes/:id", getOneQuote);
 router.put("/quotes/:id", updateQuote);
-router.post("/newquote", postNewQuote); //add here the middleware - using the request object acces user info
+router.post("/newquote", jwtAuth, postNewQuote); //add here the middleware - using the request object acces user info
 router.delete("/quotes/:id", deleteQuote);
 
 export default router;

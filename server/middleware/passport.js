@@ -14,11 +14,12 @@ const jwtStrategy = new JwtStrategy(jwtOptions, async function (
   done
 ) {
   try {
-    const res = await pool.query("SELECT * FROM users WHERE email = $1;", [
-      jwt_payload.email,
-    ]);
+    const res = await pool.query(
+      "SELECT email, name, id FROM users WHERE email = $1;",
+      [jwt_payload.email]
+    );
     const user = res.rows[0];
-    // console.log("🚀 ~ file: passport.js ~ line 21 ~ user", user);
+    console.log("🚀 ~ file: passport.js ~ line 21 ~ user", user);
 
     if (user) {
       return done(null, user);

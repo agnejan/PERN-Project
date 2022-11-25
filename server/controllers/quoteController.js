@@ -2,6 +2,7 @@ import pool from "../dbConfig.js";
 
 export const getAllQuotes = async (req, res) => {
   try {
+    console.log("req", req);
     const allQuotes = await pool.query(" SELECT * FROM quotes");
     res.json(allQuotes.rows);
   } catch (error) {
@@ -11,11 +12,15 @@ export const getAllQuotes = async (req, res) => {
 
 export const postNewQuote = async (req, res) => {
   try {
+    const uid = req.user.id;
     const { quote, picture, author, publication, genre } = req.body;
-    console.log(req.body);
+    console.log(
+      "🚀 ~ file: quoteController.js ~ line 17 ~ postNewQuote ~ req.body",
+      req
+    );
     const newQuote = await pool.query(
-      " INSERT INTO quotes (quote, picture, author, publication, genre) VALUES($1, $2, $3, $4, $5) RETURNING *", // here inserting extra column with user ID
-      [quote, picture, author, publication, genre]
+      " INSERT INTO quotes (quote, picture, author, publication, genre, user_id) VALUES($1, $2, $3, $4, $5, $6) RETURNING *", // here inserting extra column with user ID
+      [quote, picture, author, publication, genre, uid]
     );
     res.json(newQuote.rows[0]);
   } catch (error) {
