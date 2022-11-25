@@ -1,4 +1,4 @@
-const validation = (req, res) => {
+const validation = (req, res, next) => {
   const { email, name, password } = req.body;
   console.log("validation req.body", req.body);
   function validEmail(userEmail) {
@@ -9,6 +9,7 @@ const validation = (req, res) => {
   if (req.path === "/register") {
     console.log(!email.length);
     if (![email, name, password].every(Boolean)) {
+      // this is checking if there are any empty values in these inputs
       return res.status(401).json("Missing credentials");
     } else if (!validEmail(email)) {
       return res.status(401).json("Invalid email");
@@ -20,6 +21,6 @@ const validation = (req, res) => {
       return res.status(401).json("Invalid email");
     }
   }
-  next();
+  next(); // this waits until everything is checked and ok and then continues to the next route
 };
 export default validation;

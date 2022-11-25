@@ -5,8 +5,9 @@ import * as dotenv from "dotenv";
 
 dotenv.config();
 
-// register
+// REGISTRATION
 export const register = async (req, res) => {
+  // destructuring request body
   const { name, email, password } = req.body;
   console.log("req.body", req.body);
   try {
@@ -17,10 +18,12 @@ export const register = async (req, res) => {
     const arr = data.rows;
     if (arr.length != 0) {
       return res.status(400).json({
-        error: "Email already exists, please log in or try another email",
+        error:
+          "This email is already taken, please log in or try another email",
         success: false,
       });
     } else {
+      // if user does not exists
       // encrypting the password
       bcrypt.hash(password, 10, (err, hash) => {
         if (err)
@@ -46,7 +49,7 @@ export const register = async (req, res) => {
               });
             } else {
               const token = jwt.sign(
-                // Signing a jwt token
+                // generating a jwt token
                 {
                   email: newUser.email,
                 },
@@ -71,7 +74,7 @@ export const register = async (req, res) => {
   }
 };
 
-//login
+//LOGIN
 export const login = async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -114,8 +117,9 @@ export const login = async (req, res) => {
   }
 };
 
-//get all users
+//GET ALL USERS
 export const getAllUsers = async (req, res) => {
+  console.log("req.params, req.query", req.params, req.query);
   try {
     const users = await pool.query("SELECT name, email FROM users");
     console.log("users", users);
@@ -125,7 +129,7 @@ export const getAllUsers = async (req, res) => {
   }
 };
 
-//get user by ID
+//GET USER BY ID
 export const getOneUser = async (req, res) => {
   try {
     const { id } = req.params;
@@ -146,7 +150,18 @@ export const getOneUser = async (req, res) => {
   }
 };
 
+// GET USER PROFILE
 export const getProfile = async (req, res) => {
-  console.log("req.payload", req.payload);
-  res.status(201).json(`authorized request for ${req.payload.email}`);
+  console.log("req.params, req.query", req.params, req.query);
+  try {
+    const user = await pool.query(
+      "SELECT name, email FROM users WHERE id = $1",
+      [req.user.id]
+    );
+    res.json(user.rows[0]);
+    console.log("req.user", req.user);
+  } catch (error) {
+    console.log("err.message", error.message);
+    res.status(500).json("Server Error");
+  }
 };

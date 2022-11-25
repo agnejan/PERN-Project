@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     };
     const res = await fetch(`${backendUrl}/register`, options);
     const { success, error, jwt, name } = await res.json();
-    localStorage.setItem("jwt", jwt);
+    localStorage.setItem("jwt", jwt); // here setting the token in local storage
     setUser({ ...user, name });
     return { success, error };
   };
@@ -66,8 +66,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     };
     const res = await fetch(`${backendUrl}/login`, options);
     const { success, token, error, name } = await res.json();
-    localStorage.setItem("jwt", token);
-    setUser({ ...user, name });
+    localStorage.setItem("jwt", token); // here setting the token in local storage
+    setUser({ ...user, name }); // what are we doing here? Lucas
+    console.log("user", user); // why is user not recognised?
     return { success, error };
   };
 
