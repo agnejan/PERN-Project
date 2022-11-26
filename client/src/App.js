@@ -36,15 +36,17 @@ function App() {
         <BrowserRouter>
           <ThemeProvider theme={theme}>
             <div className="App">
-              <Routes>
-                <Route path="/home" element={<LandingPage />}></Route>
-                <Route path="/quotes" element={<QuotesList />}></Route>
-                <Route path="/newquote" element={<AddNewQuote />}></Route>
-                <Route path="/register" element={<Register />}></Route>
-                <Route path="/login" element={<Login />}></Route>
-                <Route path="/profile" element={<ProfilePage />}></Route>
-                <Route path="/logout" element={<Logout />}></Route>
-              </Routes>
+              <div style={{ marginBottom: "5vh" }}>
+                <Routes>
+                  <Route path="" element={<LandingPage />}></Route>
+                  <Route path="/quotes" element={<QuotesList />}></Route>
+                  <Route path="/newquote" element={<AddNewQuote />}></Route>
+                  <Route path="/register" element={<Register />}></Route>
+                  <Route path="/login" element={<Login />}></Route>
+                  <Route path="/profile" element={<ProfilePage />}></Route>
+                  <Route path="/logout" element={<Logout />}></Route>
+                </Routes>
+              </div>
               <NavBar />
             </div>
           </ThemeProvider>

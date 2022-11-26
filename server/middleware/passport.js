@@ -36,4 +36,4 @@ export const passportConfig = () => {
 };
 
 export const jwtAuth = passport.authenticate("jwt", { session: false });
-export const oAuth = passport.authenticate("oauth", { session: false });
+// export const oAuth = passport.authenticate("oauth", { session: false });

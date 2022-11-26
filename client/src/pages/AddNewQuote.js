@@ -5,8 +5,22 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Input from "@mui/material/Input";
 import { FormGroup, FormControl } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
 
 const ariaLabel = { "aria-label": "description" };
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 
 function AddNewQuote() {
   const [quote, setQuote] = useState("");
@@ -15,7 +29,9 @@ function AddNewQuote() {
   const [picture, setPicture] = useState("");
   const [genre, setGenre] = useState("");
 
-  //   console.log(quote);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const handleSubmit = async (e) => {
     // debugger; - can put this in to stop the app running and go step by step
@@ -25,12 +41,14 @@ function AddNewQuote() {
       const response = await fetch("http://localhost:5000/newquote", {
         method: "POST",
         headers: {
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify(body),
       });
       console.log(body);
       console.log(response);
+      handleOpen();
     } catch (error) {
       console.error(error.message);
     }
@@ -49,7 +67,7 @@ function AddNewQuote() {
       <Box
         // component="form"
         sx={{
-          "& > :not(style)": { m: 3, width: "40ch", rowGap: "1" },
+          "& > :not(style)": { m: 3, rowGap: "1" },
         }}
         noValidate
         autoComplete="off"
@@ -112,6 +130,22 @@ function AddNewQuote() {
           </Button>
         </form>
       </Box>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Congratulations!
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            You have added a quote:{" "}
+            <span style={{ fontStyle: "italic" }}>"{quote}"</span> by {author}
+          </Typography>
+        </Box>
+      </Modal>
     </div>
   );
 }

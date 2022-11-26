@@ -56,7 +56,7 @@ function NavBar() {
   };
 
   const optionsLoggedIn = [
-    { text: "Home", route: "/home" },
+    { text: "Home", route: "" },
     { text: "Quotes", route: "/quotes" },
     { text: "Profile", route: "/profile" },
     { text: "Logout", route: "/logout" },

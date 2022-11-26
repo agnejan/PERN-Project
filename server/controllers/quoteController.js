@@ -13,6 +13,11 @@ export const getAllQuotes = async (req, res) => {
 export const postNewQuote = async (req, res) => {
   try {
     const uid = req.user.id;
+    console.log(
+      "🚀 ~ file: quoteController.js ~ line 16 ~ postNewQuote ~ uid",
+      uid
+    );
+
     const { quote, picture, author, publication, genre } = req.body;
     console.log(
       "🚀 ~ file: quoteController.js ~ line 17 ~ postNewQuote ~ req.body",

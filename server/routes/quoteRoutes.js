@@ -19,5 +19,6 @@ router.get("/quotes/:id", getOneQuote);
 router.put("/quotes/:id", updateQuote);
 router.post("/newquote", jwtAuth, postNewQuote); //add here the middleware - using the request object acces user info
 router.delete("/quotes/:id", deleteQuote);
+// router.get("/myquotes", getMyQuotes);
 
 export default router;
