@@ -1,12 +1,12 @@
 import React from "react";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import { useHistory } from "react-router-dom";
+import ArrowBackIosRoundedIcon from "@mui/icons-material/ArrowBackIosRounded";
+import { useNavigate } from "react-router-dom";
 
 function GoBackNavigation() {
-  let history = useHistory();
+  let navigate = useNavigate();
   return (
-    <div>
-      <ArrowBackIosIcon onClick={() => history.goBack()} />
+    <div style={{ display: "flex" }}>
+      <ArrowBackIosRoundedIcon onClick={() => navigate(-1)} />
     </div>
   );
 }

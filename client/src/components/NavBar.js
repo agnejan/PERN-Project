@@ -24,6 +24,13 @@ import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { AuthContext } from "../context/AuthContext";
+import GoBackNavigation from "./GoBackNavigation";
+import HomeIcon from "@mui/icons-material/Home";
+import FormatQuoteIcon from "@mui/icons-material/FormatQuote";
+import Person2Icon from "@mui/icons-material/Person2";
+import LogoutIcon from "@mui/icons-material/Logout";
+import LoginIcon from "@mui/icons-material/Login";
+import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 
 const StyledFab = styled(Fab)({
   position: "absolute",
@@ -56,17 +63,17 @@ function NavBar() {
   };
 
   const optionsLoggedIn = [
-    { text: "Home", route: "" },
-    { text: "Quotes", route: "/quotes" },
-    { text: "Profile", route: "/profile" },
-    { text: "Logout", route: "/logout" },
+    { text: "Home", route: "", icon: <HomeIcon /> },
+    { text: "Quotes", route: "/quotes", icon: <FormatQuoteIcon /> },
+    { text: "Profile", route: "/profile", icon: <Person2Icon /> },
+    { text: "Logout", route: "/logout", icon: <LogoutIcon /> },
   ];
 
   const optionsNotLoggedIn = [
-    { text: "Home", route: "/home" },
-    { text: "Quotes", route: "/quotes" },
-    { text: "Login", route: "/login" },
-    { text: "Register", route: "/register" },
+    { text: "Home", route: "/home", icon: <HomeIcon /> },
+    { text: "Quotes", route: "/quotes", icon: <FormatQuoteIcon /> },
+    { text: "Login", route: "/login", icon: <LoginIcon /> },
+    { text: "Register", route: "/register", icon: <AppRegistrationIcon /> },
   ];
 
   const list = (anchor) => (
@@ -86,8 +93,8 @@ function NavBar() {
               >
                 <ListItem key={item.text} disablePadding>
                   <ListItemButton>
-                    <ListItemIcon>
-                      {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                    <ListItemIcon sx={{ color: "secondary" }}>
+                      {item.icon}
                     </ListItemIcon>
                     <ListItemText primary={item.text} />
                   </ListItemButton>
@@ -133,6 +140,18 @@ function NavBar() {
       <CssBaseline />
       <AppBar position="fixed" color="primary" sx={{ top: "auto", bottom: 0 }}>
         <Toolbar>
+          <IconButton>
+            <GoBackNavigation />
+          </IconButton>
+          <Link to="/newquote">
+            <StyledFab color="secondary" aria-label="add">
+              <AddIcon />
+            </StyledFab>
+          </Link>
+          <Box sx={{ flexGrow: 1 }} />
+          <IconButton color="inherit">
+            <SearchIcon />
+          </IconButton>
           {["left"].map((anchor) => (
             <React.Fragment key={anchor}>
               <IconButton
@@ -151,19 +170,6 @@ function NavBar() {
               </Drawer>
             </React.Fragment>
           ))}
-
-          <Link to="/newquote">
-            <StyledFab color="secondary" aria-label="add">
-              <AddIcon />
-            </StyledFab>
-          </Link>
-          <Box sx={{ flexGrow: 1 }} />
-          <IconButton color="inherit">
-            <SearchIcon />
-          </IconButton>
-          <IconButton color="inherit">
-            <MoreIcon />
-          </IconButton>
         </Toolbar>
       </AppBar>
     </React.Fragment>

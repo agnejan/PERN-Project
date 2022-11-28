@@ -12,7 +12,7 @@ import Login from "./pages/Login";
 import ProfilePage from "./pages/ProfilePage";
 import Logout from "./pages/Logout";
 import QuoteDetail from "./pages/QuoteDetail";
-import GoBackNavigation from "./components/GoBackNavigation";
+import { positions } from "@mui/system";
 
 const theme = createTheme({
   palette: {
@@ -54,7 +54,7 @@ function App() {
                   ></Route>
                 </Routes>
               </div>
-              <GoBackNavigation />
+
               <NavBar />
             </div>
           </ThemeProvider>
