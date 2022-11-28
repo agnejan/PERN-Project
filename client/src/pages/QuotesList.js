@@ -27,13 +27,13 @@ function QuotesList() {
   // }, []);
 
   return (
-    <div style={{ paddingBottom: "40px" }}>
-      <Box sx={{ flexGrow: 1, marginTop: 3 }}>
+    <div>
+      <Box sx={{ flexGrow: 1, marginTop: 3, paddingBottom: "40px" }}>
         <Grid container spacing={3}>
-          {quotes.map((quote) => {
+          {quotes.map((quote, index) => {
             return (
               <Grid
-                key={quote.quote_id}
+                key={quote.id}
                 item
                 xs={12}
                 sm={6}
@@ -41,7 +41,7 @@ function QuotesList() {
                 display="flex"
                 justifyContent="center"
               >
-                <ListItem quote={quote} />
+                <ListItem quote={quote} key={index} />
               </Grid>
             );
           })}

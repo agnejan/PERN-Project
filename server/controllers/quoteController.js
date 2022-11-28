@@ -2,7 +2,7 @@ import pool from "../dbConfig.js";
 
 export const getAllQuotes = async (req, res) => {
   try {
-    console.log("req", req);
+    // console.log("req", req);
     const allQuotes = await pool.query(" SELECT * FROM quotes");
     res.json(allQuotes.rows);
   } catch (error) {
@@ -35,11 +35,9 @@ export const postNewQuote = async (req, res) => {
 
 export const getOneQuote = async (req, res) => {
   try {
-    console.log(req.params);
-    const { id } = req.params;
-    const quote = await pool.query("SELECT * FROM quotes WHERE quote_id = $1", [
-      id,
-    ]);
+    // console.log("req.params", req.params);
+    const { id } = req.params; // this is instead writing const id = req.params.id
+    const quote = await pool.query("SELECT * FROM quotes WHERE id = $1", [id]);
     res.json(quote.rows[0]);
   } catch (error) {
     console.error(error.message);
@@ -51,7 +49,7 @@ export const updateQuote = async (req, res) => {
     const { id } = req.params;
     const { quote, picture, author, publication, genre } = req.body;
     const updateQuote = await pool.query(
-      "UPDATE quotes SET quote = $1, picture = $2, author = $3, publication = $4, genre = $5 WHERE quote_id = $6",
+      "UPDATE quotes SET quote = $1, picture = $2, author = $3, publication = $4, genre = $5 WHERE id = $6",
       [quote, picture, author, publication, genre, id]
     );
     res.json("updated");

@@ -12,6 +12,7 @@ import Login from "./pages/Login";
 import ProfilePage from "./pages/ProfilePage";
 import Logout from "./pages/Logout";
 import QuoteDetail from "./pages/QuoteDetail";
+import GoBackNavigation from "./components/GoBackNavigation";
 
 const theme = createTheme({
   palette: {
@@ -46,9 +47,14 @@ function App() {
                   <Route path="/login" element={<Login />}></Route>
                   <Route path="/profile" element={<ProfilePage />}></Route>
                   <Route path="/logout" element={<Logout />}></Route>
-                  <Route path="/quote" element={<QuoteDetail />}></Route>
+                  <Route
+                    path="/quotes/:id"
+                    exact
+                    element={<QuoteDetail />}
+                  ></Route>
                 </Routes>
               </div>
+              <GoBackNavigation />
               <NavBar />
             </div>
           </ThemeProvider>

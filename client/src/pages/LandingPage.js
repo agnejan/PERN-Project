@@ -1,8 +1,29 @@
 import "../styling/landingPage.css";
 import { Link } from "react-router-dom";
+import { useRef, useEffect } from "react";
 
 function LandingPage() {
-  const wrapper = document.getElementById("wrapper");
+  const ref = useRef(null);
+
+  useEffect(() => {
+    // const wrapper = document.getElementById("wrapper");
+    const wrapper = ref.current;
+    const interval = setInterval(() => {
+      const wrapper = ref.current;
+      const index = uniqueRand(0, combinations.length - 1, prev),
+        combination = combinations[index];
+      console.log("wrapper", wrapper);
+      wrapper.dataset.configuration = combination.configuration;
+      wrapper.dataset.roundness = combination.roundness;
+      prev = index;
+    }, 3000);
+    return () => {
+      console.log("clean first");
+      clearInterval(interval);
+      console.log("cleaning done, run again");
+    };
+  }, []);
+
   const rand = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
 
   const uniqueRand = (min, max, prev) => {
@@ -24,19 +45,9 @@ function LandingPage() {
 
   let prev = 0;
 
-  // setInterval(() => {
-  //   const index = uniqueRand(0, combinations.length - 1, prev),
-  //     combination = combinations[index];
-
-  //   wrapper.dataset.configuration = combination.configuration;
-  //   wrapper.dataset.roundness = combination.roundness;
-
-  //   prev = index;
-  // }, 3000);
-
   return (
     <div>
-      <div id="wrapper" data-configuration="1" data-roundness="1">
+      <div id="wrapper" ref={ref} data-configuration="1" data-roundness="1">
         <div className="shape"></div>
         <div className="shape"></div>
         <div className="shape"></div>

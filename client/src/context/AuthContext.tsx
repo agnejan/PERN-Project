@@ -38,7 +38,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   // use Effect to get Profile info from the token when the app is refreshed
   useEffect(() => {
-    console.log("useEffect getProfile has run");
+    // console.log("useEffect getProfile has run");
     getProfile();
   }, []);
 
@@ -56,7 +56,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     };
     const res = await fetch(`${backendUrl}/profile`, options);
     const user = (await res.json()) as User;
-    console.log("user", user);
+    // console.log("user", user);
     setUser(user);
   };
 
@@ -83,7 +83,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const login = async (email: string, password: string) => {
-    console.log("email", email);
+    // console.log("email", email);
     const options = {
       method: "POST",
       headers: {

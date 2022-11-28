@@ -59,11 +59,12 @@ export default function BasicCard(props) {
         </Typography>
       </CardContent>
       <CardActions>
+        {/* {console.log(quote.id)} */}
         <Button
           size="small"
           component={Link}
-          to={`/quotes/${quote.quote_id}`}
-          id={quote.quote_id}
+          to={`/quotes/${quote.id}`}
+          id={quote.id}
         >
           View Details
         </Button>

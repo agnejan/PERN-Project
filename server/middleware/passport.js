@@ -19,7 +19,7 @@ const jwtStrategy = new JwtStrategy(jwtOptions, async function (
       [jwt_payload.email]
     );
     const user = res.rows[0];
-    console.log("🚀 ~ file: passport.js ~ line 21 ~ user", user);
+    // console.log("🚀 ~ file: passport.js ~ line 21 ~ user", user);
 
     if (user) {
       return done(null, user);
