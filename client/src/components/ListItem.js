@@ -6,6 +6,7 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { style } from "@mui/system";
+import { Link } from "react-router-dom";
 
 const bull = (
   <Box
@@ -58,7 +59,14 @@ export default function BasicCard(props) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <Button
+          size="small"
+          component={Link}
+          to={`/quotes/${quote.quote_id}`}
+          id={quote.quote_id}
+        >
+          View Details
+        </Button>
       </CardActions>
     </Card>
   );

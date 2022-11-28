@@ -11,6 +11,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import ProfilePage from "./pages/ProfilePage";
 import Logout from "./pages/Logout";
+import QuoteDetail from "./pages/QuoteDetail";
 
 const theme = createTheme({
   palette: {
@@ -45,6 +46,7 @@ function App() {
                   <Route path="/login" element={<Login />}></Route>
                   <Route path="/profile" element={<ProfilePage />}></Route>
                   <Route path="/logout" element={<Logout />}></Route>
+                  <Route path="/quote" element={<QuoteDetail />}></Route>
                 </Routes>
               </div>
               <NavBar />

@@ -24,7 +24,7 @@ export const postNewQuote = async (req, res) => {
       req
     );
     const newQuote = await pool.query(
-      " INSERT INTO quotes (quote, picture, author, publication, genre, user_id) VALUES($1, $2, $3, $4, $5, $6) RETURNING *", // here inserting extra column with user ID
+      " INSERT INTO quotes (quote, picture, author, publication, genre, user_id) VALUES($1, $2, $3, $4, $5, $6) RETURNING *",
       [quote, picture, author, publication, genre, uid]
     );
     res.json(newQuote.rows[0]);
@@ -32,7 +32,6 @@ export const postNewQuote = async (req, res) => {
     console.error(error.message);
   }
 };
-// add user reference
 
 export const getOneQuote = async (req, res) => {
   try {
