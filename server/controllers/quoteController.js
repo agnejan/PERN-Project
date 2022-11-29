@@ -19,7 +19,7 @@ export const getUserQuotes = async (req, res) => {
     );
     res.json(userQuotes.rows);
   } catch (error) {
-    console.log(errror.message);
+    console.log(error.message);
   }
 };
 

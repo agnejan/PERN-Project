@@ -18,7 +18,8 @@ const bull = (
 );
 
 export default function BasicCard(props) {
-  const quote = props.quote;
+  const quote = props.item;
+
   return (
     <Card
       raised={true}

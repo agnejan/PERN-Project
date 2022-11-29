@@ -35,9 +35,9 @@ function QuoteDetail() {
           }}
           srcSet={quote.picture}
         />
-        <p style={{ fontStyle: "italic" }}>{quote.author}</p>
+        <p style={{ fontStyle: "italic" }}>Author: {quote.author}</p>
         <p>{quote.quote}</p>
-        <p style={{ fontStyle: "italic" }}>{quote.publication}</p>
+        <p style={{ fontStyle: "italic" }}>Publication: {quote.publication}</p>
       </Box>
     )
   );
