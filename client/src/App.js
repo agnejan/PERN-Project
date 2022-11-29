@@ -40,7 +40,7 @@ function App() {
             <div className="App">
               <div style={{ marginBottom: "5vh" }}>
                 <Routes>
-                  <Route path="" element={<LandingPage />}></Route>
+                  <Route path="/home" element={<LandingPage />}></Route>
                   <Route path="/quotes" element={<QuotesList />}></Route>
                   <Route path="/newquote" element={<AddNewQuote />}></Route>
                   <Route path="/register" element={<Register />}></Route>

@@ -16,6 +16,7 @@ export type AuthContextValue = {
     email: string,
     password: string
   ) => Promise<{ success: boolean; error: string }>;
+  logout: () => void;
 };
 
 const initialAuth: AuthContextValue = {
@@ -25,6 +26,9 @@ const initialAuth: AuthContextValue = {
   },
   login: () => {
     throw new Error("login not implemented");
+  },
+  logout: () => {
+    throw new Error("logout not done");
   },
 };
 
@@ -104,8 +108,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     return { success, error };
   };
 
+  const logout = () => {
+    localStorage.clear();
+    setUser(null);
+  };
+
   return (
-    <AuthContext.Provider value={{ user, register, login }}>
+    <AuthContext.Provider value={{ user, register, login, logout }}>
       {" "}
       {children}
     </AuthContext.Provider>
