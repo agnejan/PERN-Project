@@ -13,27 +13,30 @@ function QuotesList(props) {
   console.log("data", data);
 
   return (
-    <div>
-      <Box sx={{ flexGrow: 1, marginTop: 3, paddingBottom: "40px" }}>
-        <Grid container spacing={3}>
-          {data?.map((item, index) => {
-            return (
-              <Grid
-                key={item.id}
-                item
-                xs={12}
-                sm={6}
-                md={3}
-                display="flex"
-                justifyContent="center"
-              >
-                <ListItem item={item} key={index} />
-              </Grid>
-            );
-          })}
-        </Grid>
-      </Box>
-    </div>
+    <Box sx={{ flexGrow: 1, marginTop: 3, paddingBottom: "40px" }}>
+      <Grid container spacing={3}>
+        {data?.map((item, index) => {
+          return (
+            <Grid
+              key={item.id}
+              item
+              xs={12}
+              sm={6}
+              md={3}
+              display="flex"
+              justifyContent="center"
+            >
+              <ListItem
+                item={item}
+                key={index}
+                showDeleteButton={props.showDeleteButton}
+                onClickDeleteButton={props.onClickDeleteButton}
+              />
+            </Grid>
+          );
+        })}
+      </Grid>
+    </Box>
   );
 }
 

@@ -1,0 +1,5 @@
+.DeleteButton:hover {
+  cursor: pointer;
+  background-color: #f2d1f7;
+  border-radius: 30px;
+}

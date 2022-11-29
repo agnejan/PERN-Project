@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { style } from "@mui/system";
 import { Link } from "react-router-dom";
+import RemoveButton from "./RemoveButton";
 
 const bull = (
   <Box
@@ -25,7 +26,7 @@ export default function BasicCard(props) {
       raised={true}
       sx={{ minWidth: 340, maxWidth: 340 }}
       style={{
-        backgroundColor: "#faf8ed",
+        backgroundColor: "white",
       }}
     >
       <CardContent
@@ -34,6 +35,9 @@ export default function BasicCard(props) {
           paddingBottom: 0,
         }}
       >
+        {props.showDeleteButton && (
+          <RemoveButton onClick={props.onClickDeleteButton} />
+        )}
         <Typography
           sx={{ fontSize: 14 }}
           color="text.secondary"
@@ -66,6 +70,7 @@ export default function BasicCard(props) {
           component={Link}
           to={`/quotes/${quote.id}`}
           id={quote.id}
+          style={{ fontFamily: "'Merriweather', serif" }}
         >
           View Details
         </Button>

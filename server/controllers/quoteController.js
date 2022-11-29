@@ -74,14 +74,16 @@ export const updateQuote = async (req, res) => {
 
 export const deleteQuote = async (req, res) => {
   try {
+    const uid = req.user.id;
     const { id } = req.params;
     const deleteQuote = await pool.query(
-      "DELETE FROM quotes WHERE quote_id = $1",
-      [id]
+      "DELETE FROM quotes WHERE id = $1 AND user_id = $2",
+      [id, uid]
     );
     res.json("Quote was deleted");
   } catch (error) {
     console.error(error.message);
+    res.json(error.message);
   }
 };
 //add restriction

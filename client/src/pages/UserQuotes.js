@@ -24,10 +24,25 @@ function UserQuotes() {
     fetchData();
   }, []);
 
+  const deleteUserQuote = async (id) => {
+    try {
+      const deleteUserQuote = await fetch(
+        `http://localhost:5000/myquotes/${id}`,
+        { method: "DELETE" }
+      );
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <div>
       <h2>My Quotes:</h2>
-      <List data={userQuotes} />
+      <List
+        data={userQuotes}
+        showDeleteButton={true}
+        onClickDeleteButton={() => deleteUserQuote(userQuotes.id)}
+      />
     </div>
   );
 }
