@@ -10,6 +10,19 @@ export const getAllQuotes = async (req, res) => {
   }
 };
 
+export const getUserQuotes = async (req, res) => {
+  try {
+    const uid = req.user.id;
+    const userQuotes = await pool.query(
+      " SELECT * FROM quotes WHERE user_id = $1",
+      [uid]
+    );
+    res.json(userQuotes.rows);
+  } catch (error) {
+    console.log(errror.message);
+  }
+};
+
 export const postNewQuote = async (req, res) => {
   try {
     const uid = req.user.id;

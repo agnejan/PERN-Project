@@ -1,4 +1,4 @@
-import { React, useContext } from "react";
+import { React, useContext, useState } from "react";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
@@ -22,15 +22,15 @@ function Logout() {
   const { logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const handleLogout = () => {
     try {
       logout();
-      navigate("/home");
       handleOpen();
+      // navigate("/quotes");
     } catch (error) {
       console.log(error);
     }

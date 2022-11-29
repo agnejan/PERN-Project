@@ -29,7 +29,7 @@ function AddNewQuote() {
   const [picture, setPicture] = useState("");
   const [genre, setGenre] = useState("");
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 

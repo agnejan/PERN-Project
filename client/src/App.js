@@ -13,6 +13,7 @@ import ProfilePage from "./pages/ProfilePage";
 import Logout from "./pages/Logout";
 import QuoteDetail from "./pages/QuoteDetail";
 import { positions } from "@mui/system";
+import UserQuotes from "./pages/UserQuotes";
 
 const theme = createTheme({
   palette: {
@@ -47,6 +48,7 @@ function App() {
                   <Route path="/login" element={<Login />}></Route>
                   <Route path="/profile" element={<ProfilePage />}></Route>
                   <Route path="/logout" element={<Logout />}></Route>
+                  <Route path="/myquotes" element={<UserQuotes />}></Route>
                   <Route
                     path="/quotes/:id"
                     exact
