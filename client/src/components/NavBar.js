@@ -66,8 +66,8 @@ function NavBar() {
   const optionsLoggedIn = [
     { text: "Home", route: "/home", icon: <HomeIcon /> },
     { text: "Quotes", route: "/quotes", icon: <FormatQuoteIcon /> },
-    { text: "My Posted Quotes", route: "/myquotes", icon: <FormatQuoteIcon /> },
-    { text: "My Favorite Quotes", route: "/myquotes", icon: <FavoriteIcon /> },
+    { text: "My Added Quotes", route: "/myquotes", icon: <FormatQuoteIcon /> },
+    { text: "My Favorites", route: "/myquotes", icon: <FavoriteIcon /> },
     { text: "Profile", route: "/profile", icon: <Person2Icon /> },
     { text: "Logout", route: "/logout", icon: <LogoutIcon /> },
   ];
