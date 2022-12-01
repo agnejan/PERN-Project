@@ -43,6 +43,7 @@ export const postNewQuote = async (req, res) => {
     res.json(newQuote.rows[0]);
   } catch (error) {
     console.error(error.message);
+    res.json(error.message);
   }
 };
 

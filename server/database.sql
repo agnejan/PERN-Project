@@ -22,3 +22,15 @@ SELECT *
 FROM quotes
 LEFT JOIN users
 ON quotes.user_id = users.id
+
+CREATE TABLE comments(
+    id SERIAL PRIMARY KEY,
+    comment text NOT NULL,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    user_id INT,
+    quote_id INT
+); 
+
+ALTER TABLE comments ADD FOREIGN KEY (user_id) REFERENCES users(id);
+
+ALTER TABLE comments ADD FOREIGN KEY (quote_id) REFERENCES quotes(id);

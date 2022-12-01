@@ -30,6 +30,7 @@ function UserQuotes() {
         `http://localhost:5000/myquotes/${id}`,
         { method: "DELETE" }
       );
+      console.log(deleteUserQuote);
     } catch (error) {
       console.log(error.message);
     }

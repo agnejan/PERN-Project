@@ -48,6 +48,7 @@ function AddNewQuote() {
       });
       console.log(body);
       console.log(response);
+      console.log(response.json);
       handleOpen();
     } catch (error) {
       console.error(error.message);
