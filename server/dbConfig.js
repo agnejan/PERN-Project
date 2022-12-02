@@ -1,5 +1,7 @@
-import pg from "pg";
-import * as dotenv from "dotenv";
+// import pg from "pg";
+const pg = require("pg");
+// import * as dotenv from "dotenv";
+const dotenv = require('dotenv');
 // // import Sequelize from "sequelize";
 
 dotenv.config({ path: ".env.local" });
@@ -27,4 +29,5 @@ const pool = new Pool({
 // // const sequelize = new Sequelize("test", "postgres", "postgres", {
 // //   dialect: "postgres",
 // // });
-export default pool;
+// export default pool;
+module.exports = pool;

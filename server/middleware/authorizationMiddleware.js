@@ -1,9 +1,12 @@
-import jwt from "jsonwebtoken";
-import * as dotenv from "dotenv";
+// import jwt from "jsonwebtoken";
+const jwt = require ("jsonwebtoken")
+// import * as dotenv from "dotenv";
+const dotenv  = require('dotenv');
 
 dotenv.config();
 
-export const authMiddleware = (req, res, next) => {
+// export
+const authMiddleware = (req, res, next) => {
   const authHeader = req.headers["authorization"];
   // console.log("authHeader", authHeader);
   const token = authHeader && authHeader.split(" ")[1]; // make sure there is a space here
@@ -16,3 +19,5 @@ export const authMiddleware = (req, res, next) => {
     next();
   });
 };
+
+module.exports = authMiddleware;

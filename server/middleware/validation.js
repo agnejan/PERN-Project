@@ -23,4 +23,5 @@ const validation = (req, res, next) => {
   }
   next(); // this waits until everything is checked and ok and then continues to the next route
 };
-export default validation;
+// export default validation;
+module.exports = validation;

@@ -1,6 +1,7 @@
 import pool from "../dbConfig.js";
+// const pool  = require('../dbConfig.js');
 
-export const postComment = async (req, res) => {
+const postComment = async (req, res) => {
   try {
     const uid = req.user.id;
     const quoteid = req.params.id;
@@ -15,3 +16,5 @@ export const postComment = async (req, res) => {
     res.json(error.message);
   }
 };
+
+module.exports = postComment;

@@ -1,10 +1,18 @@
-import express from "express";
-import quoteRoutes from "./routes/quoteRoutes.js";
-import userRoutes from "./routes/userRoutes.js";
-import commentRoutes from "./routes/commentRoutes.js";
-import cors from "cors";
-import { passportConfig } from "./middleware/passport.js";
-import passport from "passport";
+// import express from "express";
+const express = require("express")
+// import quoteRoutes from "./routes/quoteRoutes.js";
+const quoteRoutes = require("./routes/quoteRoutes.js")
+// import userRoutes from "./routes/userRoutes.js";
+const userRoutes = require("./routes/userRoutes.js") 
+// import commentRoutes from "./routes/commentRoutes.js";
+const commentRoutes = require("./routes/commentRoutes.js") 
+// import cors from "cors";
+const cors = require("cors")
+// import { passportConfig } from "./middleware/passport.js";
+const { passportConfig } = require("./middleware/passport.js") 
+// import passport from "passport";
+const passport = require ("passport")
+// const { Model } = require("sequelize")
 // import pool from "./dbConfig.js"; //  this is ES6 syntax instead of const pool = require("./db");
 
 //create express app
@@ -33,4 +41,6 @@ app.use("", quoteRoutes);
 app.use("", userRoutes);
 app.use("", commentRoutes);
 
-export default app;
+// export default app;
+// exports.app;
+module.exports = app;

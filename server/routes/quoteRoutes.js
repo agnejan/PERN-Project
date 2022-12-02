@@ -1,15 +1,27 @@
 // import pool from "../dbConfig.js";
-import express from "express";
-import { jwtAuth } from "../middleware/passport.js";
+// import express from "express";
+const express = require("express")
+// import { jwtAuth } from "../middleware/passport.js";
+const { jwtAuth } = require("../middleware/passport.js")
 // import { Router } from "express";
-import {
+// import {
+//   getAllQuotes,
+//   postNewQuote,
+//   getOneQuote,
+//   updateQuote,
+//   deleteQuote,
+//   getUserQuotes,
+// } from "../controllers/quoteController.js";
+
+const {
   getAllQuotes,
   postNewQuote,
   getOneQuote,
   updateQuote,
   deleteQuote,
   getUserQuotes,
-} from "../controllers/quoteController.js";
+} = require("../controllers/quoteController.js");
+const { Model } = require("sequelize");
 // import Student from "../models/student.js";
 // import Quote from "../models/quote.js";
 
@@ -22,4 +34,6 @@ router.put("/quotes/:id", updateQuote);
 router.post("/newquote", jwtAuth, postNewQuote); //add here the middleware - using the request object acces user info
 router.delete("/quotes/:id", jwtAuth, deleteQuote); // inserting jwtAuth here adds the request object and thus can access user info
 
-export default router;
+// export default router;
+// exports.router;
+module.exports = router;

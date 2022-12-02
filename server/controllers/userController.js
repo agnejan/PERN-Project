@@ -1,12 +1,16 @@
-import pool from "../dbConfig.js";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-import * as dotenv from "dotenv";
+// import pool from "../dbConfig.js";
+const pool  = require('../dbConfig.js');
+// import bcrypt from "bcrypt";
+const bcrypt  = require('bcrypt');
+// import jwt from "jsonwebtoken";
+const jwt  = require('jsonwebtoken');
+// import * as dotenv from "dotenv"
+const dotenv  = require('dotenv');
 
 dotenv.config();
 
 // REGISTRATION
-export const register = async (req, res) => {
+const register = async (req, res) => {
   // destructuring request body
   const { name, email, password } = req.body;
   console.log("req.body", req.body);
@@ -75,7 +79,7 @@ export const register = async (req, res) => {
 };
 
 //LOGIN
-export const login = async (req, res) => {
+const login = async (req, res) => {
   const { email, password } = req.body;
   try {
     const data = await pool.query("SELECT * FROM users WHERE email= $1;", [
@@ -118,10 +122,10 @@ export const login = async (req, res) => {
 };
 
 // LOGOUT
-export const logout = async () => {};
+const logout = async () => {};
 
 //GET ALL USERS
-export const getAllUsers = async (req, res) => {
+const getAllUsers = async (req, res) => {
   // console.log("req.params, req.query", req.params, req.query);
   try {
     const users = await pool.query("SELECT name, email FROM users");
@@ -133,7 +137,7 @@ export const getAllUsers = async (req, res) => {
 };
 
 //GET USER BY ID
-export const getOneUser = async (req, res) => {
+const getOneUser = async (req, res) => {
   try {
     const { id } = req.params;
     console.log("id", id);
@@ -154,7 +158,7 @@ export const getOneUser = async (req, res) => {
 };
 
 // GET USER PROFILE
-export const getProfile = async (req, res) => {
+const getProfile = async (req, res) => {
   // console.log("req.params, req.query", req.params, req.query);
   try {
     // const user = await pool.query(
@@ -168,3 +172,10 @@ export const getProfile = async (req, res) => {
     res.status(500).json("Server Error");
   }
 };
+
+module.exports = getProfile;
+module.exports = register;
+module.exports = login;
+module.exports = logout;
+module.exports = getAllUsers;
+module.exports = getOneUser;

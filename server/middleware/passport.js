@@ -1,7 +1,14 @@
-import { Strategy as JwtStrategy, ExtractJwt } from "passport-jwt";
-import * as dotenv from "dotenv";
-import passport from "passport";
-import pool from "../dbConfig.js";
+// import { Strategy as JwtStrategy, ExtractJwt } from "passport-jwt";
+// const { Strategy as JwtStrategy, ExtractJwt } = require('passport-jwt');
+const JwtStrategy = require('passport-jwt').Strategy,
+    ExtractJwt = require('passport-jwt').ExtractJwt;
+// import * as dotenv from "dotenv";
+const dotenv  = require('dotenv');
+// import passport from "passport";
+const passport  = require('passport');
+// import pool from "../dbConfig.js";
+const pool  = require('../dbConfig.js');
+
 dotenv.config();
 
 const jwtOptions = {
@@ -31,9 +38,12 @@ const jwtStrategy = new JwtStrategy(jwtOptions, async function (
   }
 });
 
-export const passportConfig = () => {
+const passportConfig = () => {
   passport.use(jwtStrategy);
 };
 
-export const jwtAuth = passport.authenticate("jwt", { session: false });
+module.exports = passportConfig;
+
+const jwtAuth = passport.authenticate("jwt", { session: false });
 // export const oAuth = passport.authenticate("oauth", { session: false });
+module.exports = jwtAuth;

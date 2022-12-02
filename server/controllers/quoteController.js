@@ -1,6 +1,7 @@
-import pool from "../dbConfig.js";
+// import pool from "../dbConfig.js";
+const pool  = require("../dbConfig.js");
 
-export const getAllQuotes = async (req, res) => {
+const getAllQuotes = async (req, res) => {
   try {
     // console.log("req", req);
     const allQuotes = await pool.query(" SELECT * FROM quotes");
@@ -10,7 +11,7 @@ export const getAllQuotes = async (req, res) => {
   }
 };
 
-export const getUserQuotes = async (req, res) => {
+const getUserQuotes = async (req, res) => {
   try {
     const uid = req.user.id;
     const userQuotes = await pool.query(
@@ -23,7 +24,7 @@ export const getUserQuotes = async (req, res) => {
   }
 };
 
-export const postNewQuote = async (req, res) => {
+const postNewQuote = async (req, res) => {
   try {
     const uid = req.user.id;
     console.log(
@@ -47,7 +48,7 @@ export const postNewQuote = async (req, res) => {
   }
 };
 
-export const getOneQuote = async (req, res) => {
+const getOneQuote = async (req, res) => {
   try {
     // console.log("req.params", req.params);
     const { id } = req.params; // this is instead writing const id = req.params.id
@@ -58,7 +59,7 @@ export const getOneQuote = async (req, res) => {
   }
 };
 
-export const updateQuote = async (req, res) => {
+const updateQuote = async (req, res) => {
   try {
     const { id } = req.params;
     const { quote, picture, author, publication, genre } = req.body;
@@ -73,7 +74,7 @@ export const updateQuote = async (req, res) => {
 };
 //add restriction - JOIN sql command
 
-export const deleteQuote = async (req, res) => {
+const deleteQuote = async (req, res) => {
   try {
     const uid = req.user.id;
     const { id } = req.params;
@@ -87,4 +88,16 @@ export const deleteQuote = async (req, res) => {
     res.json(error.message);
   }
 };
-//add restriction
+
+module.exports = deleteQuote;
+module.exports = updateQuote;
+module.exports = getOneQuote;
+module.exports = postNewQuote;
+module.exports = getUserQuotes;
+module.exports = getAllQuotes;
+// exports.deleteQuote;
+// exports.updateQuote;
+// exports.getOneQuote;
+// exports.postNewQuote;
+// exports.getUserQuotes;
+// exports.getAllQuotes;
