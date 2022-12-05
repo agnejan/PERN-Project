@@ -173,9 +173,9 @@ const getProfile = async (req, res) => {
   }
 };
 
-module.exports = getProfile;
-module.exports = register;
-module.exports = login;
-module.exports = logout;
-module.exports = getAllUsers;
-module.exports = getOneUser;
+module.exports = {getProfile,
+register,
+login,
+logout,
+ getAllUsers,
+ getOneUser}

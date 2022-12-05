@@ -1,5 +1,5 @@
-import pool from "../dbConfig.js";
-// const pool  = require('../dbConfig.js');
+// import pool from "../dbConfig.js";
+const pool  = require('../dbConfig.js');
 
 const postComment = async (req, res) => {
   try {
@@ -17,4 +17,4 @@ const postComment = async (req, res) => {
   }
 };
 
-module.exports = postComment;
+module.exports = {postComment}

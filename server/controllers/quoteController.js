@@ -89,12 +89,12 @@ const deleteQuote = async (req, res) => {
   }
 };
 
-module.exports = deleteQuote;
-module.exports = updateQuote;
-module.exports = getOneQuote;
-module.exports = postNewQuote;
-module.exports = getUserQuotes;
-module.exports = getAllQuotes;
+module.exports = {deleteQuote,
+updateQuote, 
+getOneQuote,
+postNewQuote,
+getUserQuotes,
+getAllQuotes }
 // exports.deleteQuote;
 // exports.updateQuote;
 // exports.getOneQuote;

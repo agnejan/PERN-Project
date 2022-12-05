@@ -21,7 +21,7 @@ const {
   deleteQuote,
   getUserQuotes,
 } = require("../controllers/quoteController.js");
-const { Model } = require("sequelize");
+// const { Model } = require("sequelize");
 // import Student from "../models/student.js";
 // import Quote from "../models/quote.js";
 
@@ -30,7 +30,7 @@ const router = express.Router(); // router is express feature to create API endp
 router.get("/quotes", getAllQuotes);
 router.get("/myquotes", jwtAuth, getUserQuotes);
 router.get("/quotes/:id", getOneQuote);
-router.put("/quotes/:id", updateQuote);
+router.put("/quotes/:id",jwtAuth, updateQuote);
 router.post("/newquote", jwtAuth, postNewQuote); //add here the middleware - using the request object acces user info
 router.delete("/quotes/:id", jwtAuth, deleteQuote); // inserting jwtAuth here adds the request object and thus can access user info
 

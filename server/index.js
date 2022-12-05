@@ -22,6 +22,7 @@ const app = express();
 
 //instantiate router feature and add it to the express app
 const router = express.Router();
+
 app.use(router);
 
 app.use(express.json()); //req.body
@@ -43,4 +44,4 @@ app.use("", commentRoutes);
 
 // export default app;
 // exports.app;
-module.exports = app;
+module.exports = {app}
