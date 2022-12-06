@@ -36,7 +36,7 @@ export default function BasicCard(props) {
         }}
       >
         {props.showDeleteButton && (
-          <RemoveButton onClick={props.onClickDeleteButton} />
+          <RemoveButton id={quote.id} />
         )}
         <Typography
           sx={{ fontSize: 14 }}

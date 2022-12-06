@@ -1,7 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import List from "../components/List";
+import {QuotesContext} from "../context/QuotesContext"
+
+
 
 function UserQuotes() {
+  
   const [userQuotes, setUserQuotes] = useState();
 
   const fetchData = async () => {
@@ -24,17 +28,17 @@ function UserQuotes() {
     fetchData();
   }, []);
 
-  const deleteUserQuote = async (id) => {
-    try {
-      const deleteUserQuote = await fetch(
-        `http://localhost:5000/myquotes/${id}`,
-        { method: "DELETE" }
-      );
-      console.log(deleteUserQuote);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+  // const deleteUserQuote = async (id) => {
+  //   try {
+  //     const deleteUserQuote = await fetch(
+  //       `http://localhost:5000/myquotes/${id}`,
+  //       { method: "DELETE" }
+  //     );
+  //     console.log(deleteUserQuote);
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // };
 
   return (
     <div>
@@ -42,7 +46,7 @@ function UserQuotes() {
       <List
         data={userQuotes}
         showDeleteButton={true}
-        onClickDeleteButton={() => deleteUserQuote(userQuotes.id)}
+        // onClickDeleteButton={deleteUserQuote}
       />
     </div>
   );

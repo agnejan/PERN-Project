@@ -30,7 +30,7 @@ function QuotesList(props) {
                 item={item}
                 key={index}
                 showDeleteButton={props.showDeleteButton}
-                onClickDeleteButton={props.onClickDeleteButton}
+                // onClickDeleteButton={props.onClickDeleteButton}
               />
             </Grid>
           );

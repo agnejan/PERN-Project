@@ -32,7 +32,7 @@ router.get("/myquotes", jwtAuth, getUserQuotes);
 router.get("/quotes/:id", getOneQuote);
 router.put("/quotes/:id",jwtAuth, updateQuote);
 router.post("/newquote", jwtAuth, postNewQuote); //add here the middleware - using the request object acces user info
-router.delete("/quotes/:id", jwtAuth, deleteQuote); // inserting jwtAuth here adds the request object and thus can access user info
+router.delete("/myquotes/:id", jwtAuth, deleteQuote); // inserting jwtAuth here adds the request object and thus can access user info
 
 // export default router;
 // exports.router;

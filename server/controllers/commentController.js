@@ -10,7 +10,7 @@ const postComment = async (req, res) => {
       " INSERT INTO comments ( comment, user_id, quote_id ) VALUES ($1, $2, $3) RETURNING *",
       [comment, uid, quoteid]
     );
-    res.json(newComment.rows);
+    res.json(newComment.rows[0]);
   } catch (error) {
     console.error(error.message);
     res.json(error.message);

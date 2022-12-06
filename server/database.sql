@@ -6,14 +6,15 @@ CREATE TABLE quotes(
     picture VARCHAR(255),
     author VARCHAR(255),
     publication VARCHAR(255),
-    genre VARCHAR(255)
+    genre VARCHAR(255),
+    user_id INT
 ); 
 
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,
     name text NOT NULL,
     email text NOT NULL UNIQUE,
-    password varchar(255) NOT NULL
+    password varchar(255) NOT NULL,
 );
 
 ALTER TABLE quotes FOREIGN KEY (user_id) REFERENCES users(id);

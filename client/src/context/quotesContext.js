@@ -28,8 +28,27 @@ export const QuotesContextProvider = (props) => {
     fetchData();
   }, []);
 
+  const deleteUserQuote = async (id) => {
+    const options = {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      },
+    };
+    try {
+      const deleteUserQuote = await fetch(
+        `http://localhost:5000/myquotes/${id}`,
+        options
+      );
+      console.log(deleteUserQuote);
+      fetchData();
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   return (
-    <QuotesContext.Provider value={{ quotes }}>
+    <QuotesContext.Provider value={{ quotes, deleteUserQuote }}>
       {props.children}
     </QuotesContext.Provider>
   );
