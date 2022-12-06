@@ -1,6 +1,7 @@
 import { React, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Box from "@mui/material/Box";
+import Comments from "../components/Comments.js"
 
 function QuoteDetail() {
   let { id } = useParams();
@@ -38,6 +39,7 @@ function QuoteDetail() {
         <p style={{ fontStyle: "italic" }}>Author: {quote.author}</p>
         <p>{quote.quote}</p>
         <p style={{ fontStyle: "italic" }}>Publication: {quote.publication}</p>
+        <Comments id={quote.id}/>
       </Box>
     )
   );

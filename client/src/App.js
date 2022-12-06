@@ -14,6 +14,7 @@ import Logout from "./pages/Logout";
 import QuoteDetail from "./pages/QuoteDetail";
 import { positions } from "@mui/system";
 import UserQuotes from "./pages/UserQuotes";
+// import Comments from "./components/Comments";
 
 const theme = createTheme({
   palette: {
@@ -54,6 +55,11 @@ function App() {
                     exact
                     element={<QuoteDetail />}
                   ></Route>
+                   {/* <Route
+                    path="/quotes/:id/comment"
+                    exact
+                    element={<Comments />}
+                  ></Route> */}
                 </Routes>
               </div>
 

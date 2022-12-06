@@ -21,6 +21,7 @@ export default function BasicButtons(props) {
   const handleClick = () => {
     deleteUserQuote(props.id) /// here means that the function is only fired when the click happens and not always
   }
+  
   return (
     
     <LightTooltip title="remove" placement="top" >

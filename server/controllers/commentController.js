@@ -17,4 +17,15 @@ const postComment = async (req, res) => {
   }
 };
 
-module.exports = {postComment}
+const getComments = async (req, res) => {
+  try {
+    const {id} = req.params;
+    const comments = await pool.query(" SELECT * FROM comments WHERE quote_id=$1", [id]);
+    res.json(comments.rows)
+    console.log('comments', comments)
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+module.exports = {postComment, getComments}

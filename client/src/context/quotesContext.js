@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 
+
 export const QuotesContext = createContext();
 
 export const QuotesContextProvider = (props) => {
@@ -28,6 +29,7 @@ export const QuotesContextProvider = (props) => {
     fetchData();
   }, []);
 
+ 
   const deleteUserQuote = async (id) => {
     const options = {
       method: "DELETE",
@@ -41,7 +43,7 @@ export const QuotesContextProvider = (props) => {
         options
       );
       console.log(deleteUserQuote);
-      fetchData();
+      fetchData(); // why does this not help to refresh the data after the deletion? 
     } catch (error) {
       console.log(error.message);
     }

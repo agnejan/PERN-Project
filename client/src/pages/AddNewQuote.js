@@ -46,9 +46,9 @@ function AddNewQuote() {
         },
         body: JSON.stringify(body),
       });
-      console.log(body);
-      console.log(response);
-      console.log(response.json);
+      // console.log(body);
+      // console.log(response);
+      // console.log(response.json);
       handleOpen();
     } catch (error) {
       console.error(error.message);
