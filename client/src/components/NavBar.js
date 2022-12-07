@@ -64,16 +64,16 @@ function NavBar() {
   };
 
   const optionsLoggedIn = [
-    { text: "Home", route: "/home", icon: <HomeIcon /> },
+    { text: "Home", route: "", icon: <HomeIcon /> },
     { text: "Quotes", route: "/quotes", icon: <FormatQuoteIcon /> },
     { text: "My Added Quotes", route: "/myquotes", icon: <FormatQuoteIcon /> },
-    { text: "My Favorites", route: "/myquotes", icon: <FavoriteIcon /> },
+    { text: "My Favorites", route: "/favorites", icon: <FavoriteIcon /> },
     { text: "Profile", route: "/profile", icon: <Person2Icon /> },
     { text: "Logout", route: "/logout", icon: <LogoutIcon /> },
   ];
 
   const optionsNotLoggedIn = [
-    { text: "Home", route: "/home", icon: <HomeIcon /> },
+    { text: "Home", route: "", icon: <HomeIcon /> },
     { text: "Quotes", route: "/quotes", icon: <FormatQuoteIcon /> },
     { text: "Login", route: "/login", icon: <LoginIcon /> },
     { text: "Register", route: "/register", icon: <AppRegistrationIcon /> },
@@ -144,11 +144,12 @@ function NavBar() {
           <IconButton>
             <GoBackNavigation />
           </IconButton>
+          {user &&
           <Link to="/newquote">
             <StyledFab color="secondary" aria-label="add">
               <AddIcon />
             </StyledFab>
-          </Link>
+          </Link>}
           <Box sx={{ flexGrow: 1 }} />
           <IconButton color="inherit">
             <SearchIcon />

@@ -42,7 +42,7 @@ function UserQuotes() {
 
   return (
     <div>
-      <h2>My Quotes:</h2>
+      <h2>My Created Quotes:</h2>
       <List
         data={userQuotes}
         showDeleteButton={true}

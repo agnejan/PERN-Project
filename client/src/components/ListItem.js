@@ -1,4 +1,4 @@
-import * as React from "react";
+import {react, useContext, useState} from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -8,6 +8,8 @@ import Typography from "@mui/material/Typography";
 import { style } from "@mui/system";
 import { Link } from "react-router-dom";
 import RemoveButton from "./RemoveButton";
+import LikeButton from "./LikeButton";
+import {FavoritesContext} from "../context/FavoritesContext"
 
 const bull = (
   <Box
@@ -19,7 +21,34 @@ const bull = (
 );
 
 export default function BasicCard(props) {
+
   const quote = props.item;
+
+  const [checked, setChecked] = useState(false)
+
+  const {addToWishlist, removeFromWishlist} = useContext(FavoritesContext);
+
+  const isWishlisted = () => {
+    if(checked) {
+      return true;
+    }
+    return false;
+  }
+
+  const handleAddToWishlist = (event) => {
+    if (!checked) {
+      addToWishlist(quote.id);
+      setChecked(event.target.checked);
+      //setChecked(true);
+  }
+    removeFromWishlist(quote.id);
+    setChecked(event.target.checked);
+    // setChecked(false);
+  }
+
+  // const handleAddToWishlist = (event) => {
+  //   setChecked(event.target.checked);
+  // }
 
   return (
     <Card
@@ -63,8 +92,7 @@ export default function BasicCard(props) {
           {quote.publication}
         </Typography>
       </CardContent>
-      <CardActions>
-        {/* {console.log(quote.id)} */}
+      <CardActions style={{dislay: "flex", flexDirection:"row", justifyContent: "space-between"}}>
         <Button
           size="small"
           component={Link}
@@ -74,6 +102,10 @@ export default function BasicCard(props) {
         >
           View Details
         </Button>
+        <LikeButton
+        checked={isWishlisted()}
+        onChange={handleAddToWishlist}
+        />
       </CardActions>
     </Card>
   );

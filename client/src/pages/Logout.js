@@ -55,7 +55,6 @@ function Logout() {
       >
         <Box sx={style}>
           {/* <Typography id="modal-modal-title" variant="h6" component="h2">
-          
           </Typography> */}
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             You have logged out!

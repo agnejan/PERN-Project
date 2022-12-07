@@ -10,7 +10,6 @@ function QuotesList(props) {
   //   const { quotes } = useContext(QuotesContext); // here destructuring instead of writing const products = useContext(ProductsContext.products)
 
   const { data } = props;
-  console.log("data", data);
 
   return (
     <Box sx={{ flexGrow: 1, marginTop: 3, paddingBottom: "40px" }}>

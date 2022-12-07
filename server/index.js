@@ -6,6 +6,7 @@ const quoteRoutes = require("./routes/quoteRoutes.js")
 const userRoutes = require("./routes/userRoutes.js") 
 // import commentRoutes from "./routes/commentRoutes.js";
 const commentRoutes = require("./routes/commentRoutes.js") 
+const wishlistRoutes = require("./routes/wishlistRoutes.js") 
 // import cors from "cors";
 const cors = require("cors")
 // import { passportConfig } from "./middleware/passport.js";
@@ -41,6 +42,7 @@ app.listen(5000, () => {
 app.use("", quoteRoutes);
 app.use("", userRoutes);
 app.use("", commentRoutes);
+app.use("", wishlistRoutes);
 
 // export default app;
 // exports.app;
