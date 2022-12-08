@@ -26,29 +26,33 @@ export default function BasicCard(props) {
 
   const [checked, setChecked] = useState(false)
 
-  const {addToWishlist, removeFromWishlist} = useContext(FavoritesContext);
+  const {addToFavorites, removeFromFavorites, favoritesAction, favorites} = useContext(FavoritesContext);
 
-  const isWishlisted = () => {
-    if(checked) {
-      return true;
-    }
-    return false;
-  }
+  const isFavorite = () => {
+  if(favorites.filter((item)=> item.id === quote.id).length > 0) {
+     return true;
+   } else {
+      return false;
+   };
+  };
 
-  const handleAddToWishlist = (event) => {
-    if (!checked) {
-      addToWishlist(quote.id);
-      setChecked(event.target.checked);
-      //setChecked(true);
-  }
-    removeFromWishlist(quote.id);
-    setChecked(event.target.checked);
-    // setChecked(false);
-  }
 
-  // const handleAddToWishlist = (event) => {
-  //   setChecked(event.target.checked);
+  const handleAddToFavorites = (event) => {
+    favoritesAction(quote);
+  };
+  //   if (!checked) {
+  //     addToFavorites(quote.id);
+  //     setChecked(event.target.checked);
+  //     //setChecked(true);
   // }
+  //   removeFromFavorites(quote.id);
+  //   setChecked(event.target.checked);
+  //   // setChecked(false);
+  // }
+
+  // // const handleAddToWishlist = (event) => {
+  // //   setChecked(event.target.checked);
+  // // }
 
   return (
     <Card
@@ -103,8 +107,8 @@ export default function BasicCard(props) {
           View Details
         </Button>
         <LikeButton
-        checked={isWishlisted()}
-        onChange={handleAddToWishlist}
+        checked={isFavorite()}
+        onChange={handleAddToFavorites}
         />
       </CardActions>
     </Card>
