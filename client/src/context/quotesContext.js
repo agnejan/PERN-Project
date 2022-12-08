@@ -1,19 +1,9 @@
 import { createContext, useState, useEffect } from "react";
 
-
 export const QuotesContext = createContext();
 
 export const QuotesContextProvider = (props) => {
   const [quotes, setQuotes] = useState([]);
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const response = await fetch("http://localhost:5000/quotes");
-  //     const data = await response.json();
-  //     setQuotes(data);
-  //   };
-  //   !quotes && fetchData();
-  // });
 
   const fetchData = async () => {
     try {
@@ -29,7 +19,6 @@ export const QuotesContextProvider = (props) => {
     fetchData();
   }, []);
 
- 
   const deleteUserQuote = async (id) => {
     const options = {
       method: "DELETE",
