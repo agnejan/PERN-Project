@@ -161,10 +161,10 @@ const getOneUser = async (req, res) => {
 const getProfile = async (req, res) => {
   // console.log("req.params, req.query", req.params, req.query);
   try {
-    // const user = await pool.query(
-    //   "SELECT name, email FROM users WHERE id = $1",
-    //   [req.user.id]
-    // );
+    const user = await pool.query(
+      "SELECT name, email, profile_picture FROM users WHERE id = $1",
+      [req.user.id]
+    );
     res.json(req.user);
     // console.log("req.user", req.user);
   } catch (error) {

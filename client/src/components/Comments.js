@@ -8,6 +8,7 @@ import Divider from '@mui/material/Divider';
 import { display } from "@mui/system";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { hover } from "@testing-library/user-event/dist/hover";
+import Box from '@mui/material/Box';
 
 
 function Comments(props) {
@@ -15,6 +16,17 @@ function Comments(props) {
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState("");
   const [show, setShow] = useState(false);
+
+  //COMMENT DIVIDER HOVER
+  const [isHover, setIsHover] = useState(false);
+
+   const handleMouseEnter = () => {
+      setIsHover(true);
+   };
+   const handleMouseLeave = () => {
+      setIsHover(false);
+   };
+
 
   const readComments = async () => {
     try {
@@ -35,7 +47,8 @@ function Comments(props) {
     setComment(e.target.value);
   };
 
-  const sendComment = async () => {
+  const sendComment = async (e) => {
+    e.preventDefault()
    try {
      const body = {comment}
     const response = await fetch(`http://localhost:5000/quotes/${props.id}/comment`, {
@@ -54,7 +67,7 @@ function Comments(props) {
   };
 
   return (
-    <div
+    <Box
       style={{
         // maxWidth: "500px",
         // height: "70%",
@@ -64,10 +77,12 @@ function Comments(props) {
         justifyContent: "center"
       }}
     >
-      
-      <Divider style={{marginBottom: "3vh", marginTop:"3vw" }} onClick={() => setShow(prev => !prev)}> show ? "Hide Comments" : "Show Comments"</Divider>
-     
-      {show && 
+      <Divider className="commentsDivider" style={{marginBottom: "3vh", marginTop:"3vw", cursor:isHover ? "pointer":"auto"}} onClick={() => setShow(prev => !prev)}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}>
+      {show ? "Hide Comments" : "Show Comments"}
+      </Divider>
+      {show &&
       <div>
       <div
         style={{
@@ -82,20 +97,25 @@ function Comments(props) {
           marginBottom: "10px"
         }}
       >
+        <form style={{display:"flex", justifyContent:"center"}}>
         <TextField
           id="outlined-basic"
           label="Post a comment..."
-          variant="outlined"
+          variant="standard"
           value={comment}
           onChange={handleComment}
           style={{ width: "70%", backgroundColor: "white", padding: "0"}}
+         inputProps={{minLength: 2}}
+         required
         />
         <Button
-          variant="contained"
-          size="small"
+          type="submit"
+          variant="text"
+          size="large"
           onClick={sendComment}
           endIcon={<SendIcon />}
         ></Button>
+        </form>
       </div>
         {comments &&
         comments.map((item) => (
@@ -117,8 +137,9 @@ function Comments(props) {
                 alignItems: "center",
               }}
             >
-              <p style={{ margin: "0", marginLeft: "15px" }}>
-                <span style={{ fontWeight: "bold" }}>{item.user_id}</span> wrote:{" "}
+              <div style={{marginTop: "5px"}}>
+              <p style={{ margin: "0", marginLeft: "5px", fontSize: "13px"}}>
+                <span style={{ fontWeight: "bold" }}>{item.name}</span> wrote:{" "}
               </p>
               <p
                 style={{
@@ -128,13 +149,14 @@ function Comments(props) {
                   marginLeft: "10px",
                 }}
               >
-                {item.timestamp}
+                {new Date(item.timestamp).toDateString('DE',{})}
               </p>
+              </div>
             </div>
             <div
               style={{
                 display: "flex",
-                padding: "10px",
+                padding: "5px",
                 flexWrap: "wrap",
                 flexDirection: "column",
               }}
@@ -153,7 +175,7 @@ function Comments(props) {
           </div>
         ))}
         </div>}
-      </div>
+      </Box>
   );
 }
 

@@ -10,23 +10,23 @@ import { Link } from "react-router-dom";
 import RemoveButton from "./RemoveButton";
 import LikeButton from "./LikeButton";
 import {FavoritesContext} from "../context/FavoritesContext"
+import {AuthContext} from "../context/AuthContext"
 
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
-  >
-    •
-  </Box>
-);
+// const bull = (
+//   <Box
+//     component="span"
+//     sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
+//   >
+//     •
+//   </Box>
+// );
 
 export default function BasicCard(props) {
 
   const quote = props.item;
 
-  const [checked, setChecked] = useState(false)
-
-  const {addToFavorites, removeFromFavorites, favoritesAction, favorites} = useContext(FavoritesContext);
+  const { favoritesAction, favorites} = useContext(FavoritesContext);
+  const { user} = useContext(AuthContext);
 
   const isFavorite = () => {
   if(favorites.filter((item)=> item.id === quote.id).length > 0) {
@@ -35,24 +35,6 @@ export default function BasicCard(props) {
       return false;
    };
   };
-
-
-  const handleAddToFavorites = (event) => {
-    favoritesAction(quote);
-  };
-  //   if (!checked) {
-  //     addToFavorites(quote.id);
-  //     setChecked(event.target.checked);
-  //     //setChecked(true);
-  // }
-  //   removeFromFavorites(quote.id);
-  //   setChecked(event.target.checked);
-  //   // setChecked(false);
-  // }
-
-  // // const handleAddToWishlist = (event) => {
-  // //   setChecked(event.target.checked);
-  // // }
 
   return (
     <Card
@@ -106,10 +88,11 @@ export default function BasicCard(props) {
         >
           View Details
         </Button>
+        {user &&
         <LikeButton
         checked={isFavorite()}
-        onChange={handleAddToFavorites}
-        />
+        onChange={()=> favoritesAction(quote)}
+        />}
       </CardActions>
     </Card>
   );

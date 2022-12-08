@@ -43,7 +43,7 @@ export const QuotesContextProvider = (props) => {
         options
       );
       console.log(deleteUserQuote);
-      fetchData(); // why does this not help to refresh the data after the deletion? 
+      fetchData(); // why does this not help to refresh the data after the deletion?
     } catch (error) {
       console.log(error.message);
     }

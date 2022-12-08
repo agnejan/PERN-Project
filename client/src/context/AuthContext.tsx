@@ -3,7 +3,7 @@ import { NullLiteral } from "typescript";
 
 const backendUrl = "http://localhost:5000";
 
-type User = { name: string; email?: string; id: number };
+type User = { name: string; email?: string; id: number; picture: string };
 
 export type AuthContextValue = {
   user: User | null;
@@ -62,6 +62,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const user = (await res.json()) as User;
     // console.log("user", user);
     setUser(user);
+    console.log(user)
   };
 
   const register = async (

@@ -14,6 +14,8 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { StringDecoder } from "string_decoder";
 import { AuthContext } from "../context/AuthContext";
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 
 interface State {
   password: string;
@@ -175,6 +177,9 @@ function Register() {
         </Link>{" "}
         here.{" "}
       </div>
+      {values.error && <Alert severity="warning" style={{marginTop: "10px", display: "flex", justifyContent: "center"}}> 
+        {values.error}
+      </Alert>}
     </div>
   );
 }

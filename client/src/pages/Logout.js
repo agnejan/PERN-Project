@@ -29,8 +29,7 @@ function Logout() {
   const handleLogout = () => {
     try {
       logout();
-      handleOpen();
-      // navigate("/quotes");
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
@@ -43,7 +42,7 @@ function Logout() {
         variant="contained"
         color="secondary"
         style={{ marginTop: 20 }}
-        onClick={handleLogout}
+        onClick={handleOpen}
       >
         Log Out
       </Button>
@@ -53,12 +52,18 @@ function Logout() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
-          {/* <Typography id="modal-modal-title" variant="h6" component="h2">
-          </Typography> */}
+        <Box sx={style} style={{display: "flex", flexDirection: "column", justifyContent:"center"}}>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            You have logged out!
+            Are you sure you want to log out?
           </Typography>
+            <Button
+              variant="contained"
+              color="secondary"
+              style={{ marginTop: 20 }}
+              onClick={handleLogout}
+            >
+              Log out
+            </Button>
         </Box>
       </Modal>
     </div>
