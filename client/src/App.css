@@ -15,3 +15,8 @@ body {
 .commentsDivider:hover {
   font-weight: bold;
 }
+
+.appName:hover {
+color: #ebf38b;
+font-weight: bold;
+}

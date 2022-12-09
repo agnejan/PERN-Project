@@ -56,7 +56,7 @@ function LandingPage() {
         <div className="shape"></div>
         <div className="shape"></div>
       </div>
-      <Link to="/quotes" style={{ textDecoration: "none", color: "black" }}>
+      <Link to="/quotes" style={{ textDecoration: "none", color: "black" }} className="appName">
         INSPIRE ME
       </Link>
     </div>

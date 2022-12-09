@@ -5,7 +5,6 @@ import Comments from "../components/Comments.js"
 
 function QuoteDetail() {
   let { id } = useParams();
-  // console.log("id params", id);
 
   const [quote, setQuote] = useState();
 
@@ -37,8 +36,9 @@ function QuoteDetail() {
           srcSet={quote.picture}
         />
         <p style={{ fontStyle: "italic" }}>Author: {quote.author}</p>
-        <p>{quote.quote}</p>
         <p style={{ fontStyle: "italic" }}>Publication: {quote.publication}</p>
+        <p>{quote.quote}</p>
+        <p style={{ fontStyle: "italic", fontSize:"13px" }}>Genre: {quote.genre}</p>
         <Comments id={quote.id}/>
       </Box>
     )

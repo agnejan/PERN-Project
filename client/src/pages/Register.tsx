@@ -34,11 +34,6 @@ function Register() {
     showPassword: false,
   });
 
-  // const [showPassword, setShowPassowrd] = useState<State>("");
-  //  const [name, setName] = useState("");
-  //  const [email, setEmail] = useState("");
-  //  const [password, setPassword] = useState("");
-
   const navigate = useNavigate();
 
   const { register } = useContext(AuthContext);
@@ -49,7 +44,6 @@ function Register() {
     };
 
   const handleClickShowPassword = () => {
-    // setValues.showPassword(!values.showPassword);
     setValues({ ...values, showPassword: !values.showPassword });
   };
 
@@ -58,24 +52,6 @@ function Register() {
   };
 
   //REGISTRATION
-
-  // const handleRegistration = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     const body = { name, email, password };
-  //     const response = await fetch("http://localhost:5000/register", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(body),
-  //     });
-  //     console.log(body);
-  //     console.log(response);
-  //   } catch (error) {
-  //     console.error(error.message);
-  //   }
-  // };
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();

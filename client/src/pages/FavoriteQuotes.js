@@ -12,7 +12,6 @@ const {favorites} = useContext(FavoritesContext);
       <List
         data={favorites}
         showDeleteButton={false}
-        // onClickDeleteButton={deleteUserQuote}
       />
     </div>
   );

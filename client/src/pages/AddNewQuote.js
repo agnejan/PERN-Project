@@ -7,6 +7,7 @@ import Input from "@mui/material/Input";
 import { FormGroup, FormControl } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import bookgif from '../images/book.gif'
 
 const ariaLabel = { "aria-label": "description" };
 
@@ -20,6 +21,9 @@ const style = {
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center"
 };
 
 function AddNewQuote() {
@@ -46,9 +50,6 @@ function AddNewQuote() {
         },
         body: JSON.stringify(body),
       });
-      // console.log(body);
-      // console.log(response);
-      // console.log(response.json);
       handleOpen();
     } catch (error) {
       console.error(error.message);
@@ -138,10 +139,10 @@ function AddNewQuote() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Congratulations!
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          {/* <Typography id="modal-modal-title" variant="h6" component="h2"> */}
+            <img src={bookgif} style={{ height:"40px", marginRight: "5px"}}></img>
+          {/* </Typography> */}
+          <Typography id="modal-modal-description" >
             You have added a quote:{" "}
             <span style={{ fontStyle: "italic" }}>"{quote}"</span> by {author}
           </Typography>
