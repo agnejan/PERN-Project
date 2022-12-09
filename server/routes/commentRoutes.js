@@ -14,5 +14,4 @@ router.post("/quotes/:id/comment", jwtAuth, postComment);
 router.get("/quotes/:id/comment",  getComments);
 
 // export default router;
-// exports.router;
 module.exports = router;

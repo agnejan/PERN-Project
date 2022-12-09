@@ -32,7 +32,7 @@ const initialAuth: AuthContextValue = {
   },
 };
 
-//Create context
+//CREATE CONTEXT
 
 export const AuthContext = createContext<AuthContextValue>(initialAuth);
 
@@ -42,7 +42,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   // use Effect to get Profile info from the token when the app is refreshed
   useEffect(() => {
-    // console.log("useEffect getProfile has run");
     getProfile();
   }, []);
 
@@ -60,7 +59,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     };
     const res = await fetch(`${backendUrl}/profile`, options);
     const user = (await res.json()) as User;
-    // console.log("user", user);
     setUser(user);
     console.log(user)
   };
@@ -80,7 +78,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const res = await fetch(`${backendUrl}/register`, options);
     const { success, error, jwt, name } = await res.json();
     if (success) {
-      localStorage.setItem("jwt", jwt); // here setting the token in local storage
+      localStorage.setItem("jwt", jwt);
       getProfile();
     }
     // setUser({ ...user, name }); // this means we take the user object and overwrrite the name property - called object spread
@@ -97,15 +95,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       body: JSON.stringify({ email, password }),
     };
     const res = await fetch(`${backendUrl}/login`, options);
-    const { success, token, error } = await res.json(); // *** here add aslo if (success) and if (error) handling
+    const { success, token, error } = await res.json(); 
     if (success) {
       localStorage.setItem("jwt", token); // here setting the token in local storage
       getProfile();
     } else if (error) {
       console.log("log in error", error);
     }
-    // setUser({ ...user, name }); // what are we doing here? Lucas
-    // console.log("user", user); // why is user not recognised? Lucas
     return { success, error };
   };
 
